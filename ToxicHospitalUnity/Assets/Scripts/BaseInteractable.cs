@@ -8,15 +8,26 @@ public enum eInteractionRequirement { none = 0, porter = 1 << 0, journalist = 1 
 [RequireComponent(typeof(Collider2D))]
 public class BaseInteractable : MonoBehaviour
 {
-    private eInteractionRequirement interactionRequirement = eInteractionRequirement.none;
-    public eInteractionRequirement InteractionRequirement { get; private set; }
+    protected eInteractionRequirement interactionRequirement = eInteractionRequirement.none;
+    public eInteractionRequirement InteractionRequirement { get; protected set; }
     [SerializeField]
-    private List<eInteractionRequirement> InteractionRequirements = new List<eInteractionRequirement>();
+    protected List<eInteractionRequirement> InteractionRequirements = new List<eInteractionRequirement>();
 
-    private int requiredTriggerCount = 0;
-    private int currentTriggerCount = 0;
+    protected int requiredTriggerCount = 0;
+    protected int currentTriggerCount = 0;
 
-    private void Awake()
+    protected enum eActivateInteraction { never, afterAnimation, afterDelay, immediately }
+    [SerializeField]
+    protected eActivateInteraction interactionDelay = eActivateInteraction.afterDelay;
+    public bool AnimationFinished = false;
+    public float AnimationTime = 0.5f;
+
+    [SerializeField]
+    protected bool interactionStopsPlayer = true;
+
+    protected bool runningInteraction = false;
+
+    protected void Awake()
     {
         foreach (eInteractionRequirement ir in InteractionRequirements)
         {
@@ -39,18 +50,80 @@ public class BaseInteractable : MonoBehaviour
         currentTriggerCount--;
     }
 
-
+    /// <summary>
+    /// Returns true if the player can trigger this interaction currently
+    /// </summary>
+    /// <param name="triggerType"></param>
+    /// <returns></returns>
     virtual public bool CanInteract(eInteractionRequirement triggerType)
     {
-        return (triggerType & interactionRequirement) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount;
+        return (triggerType & interactionRequirement) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount && !runningInteraction;
     }
 
-    virtual public void TriggerInteraction(eInteractionRequirement triggerType, Transform trigger /*~~~ trigger class maybe*/)
+    /// <summary>
+    /// Returns true if the player is stopped from moving by this interaction
+    /// </summary>
+    /// <param name="triggerType"></param>
+    /// <param name="trigger"></param>
+    /// <returns></returns>
+    virtual public bool TriggerInteraction(eInteractionRequirement triggerType, Transform trigger /*~~~ trigger class maybe*/)
     {
         if (!CanInteract(triggerType))
         {
-            return;
+            return false;
         }
+        StartCoroutine(ManageInteraction());
+        return interactionStopsPlayer;
+    }
+
+    /// <summary>
+    /// Controls the flow of an interaction to allow animations to play before the effect is realised
+    /// </summary>
+    /// <returns></returns>
+    virtual protected IEnumerator ManageInteraction()
+    {
+        runningInteraction = true;
+        yield return StartCoroutine(WaitBeforeInteraction());
+        DoInteractionAction();
+        runningInteraction = false;
+    }
+
+    /// <summary>
+    /// Waits for the appropriate time before allowing an interaction to take place
+    /// </summary>
+    /// <returns></returns>
+    virtual protected IEnumerator WaitBeforeInteraction()
+    {
+        switch (interactionDelay)
+        {
+            case eActivateInteraction.afterDelay:
+                for (float delay = AnimationTime; delay > 0.0f; delay -= Time.deltaTime)
+                {
+                    yield return null;
+                }
+                break;
+            case eActivateInteraction.afterAnimation:
+                while (!AnimationFinished)
+                {
+                    yield return null;
+                }
+                break;
+            case eActivateInteraction.never:
+                while (true)
+                {
+                    yield return null;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Performs the interaction action
+    /// </summary>
+    virtual protected void DoInteractionAction()
+    {
         Debug.LogWarning("You should be using an overriden method.");
     }
 }
