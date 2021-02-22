@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Flags]
-public enum eInteractionRequirement { none = 0, porter = 1 << 0, journalist = 1 << 1, eitherCharacter = porter | journalist }
+public enum eInteractionRequirement
+{
+    none = 0,
+    porter = 1 << 0,
+    journalist = 1 << 1,
+    eitherCharacter = porter | journalist,
+    triggers = 1 << 2
+}
 
 [RequireComponent(typeof(Collider2D))]
 public class BaseInteractable : MonoBehaviour
 {
     protected eInteractionRequirement interactionRequirement = eInteractionRequirement.none;
-    public eInteractionRequirement InteractionRequirement { get; protected set; }
+    public eInteractionRequirement InteractionRequirement
+    {
+        get { return interactionRequirement; }
+        protected set { interactionRequirement = value; }
+    }
     [SerializeField]
     protected List<eInteractionRequirement> InteractionRequirements = new List<eInteractionRequirement>();
 
@@ -31,7 +42,7 @@ public class BaseInteractable : MonoBehaviour
     {
         foreach (eInteractionRequirement ir in InteractionRequirements)
         {
-            interactionRequirement |= ir;
+            InteractionRequirement |= ir;
         }
     }
 
@@ -43,6 +54,10 @@ public class BaseInteractable : MonoBehaviour
     public void AddToCurrentTriggers()
     {
         currentTriggerCount++;
+        if (currentTriggerCount == requiredTriggerCount)
+        {
+            TriggerInteraction(InteractionRequirement, transform);
+        }
     }
 
     public void SubFromCurrentTriggers()
@@ -57,7 +72,7 @@ public class BaseInteractable : MonoBehaviour
     /// <returns></returns>
     virtual public bool CanInteract(eInteractionRequirement triggerType)
     {
-        return (triggerType & interactionRequirement) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount && !runningInteraction;
+        return (triggerType & InteractionRequirement) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount && !runningInteraction;
     }
 
     /// <summary>
