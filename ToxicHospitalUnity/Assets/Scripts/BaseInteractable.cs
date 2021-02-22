@@ -130,6 +130,7 @@ public class BaseInteractable : MonoBehaviour
                 {
                     yield return null;
                 }
+                AnimationFinished = false;
                 break;
             case eActivateInteraction.never:
                 while (true)
@@ -148,5 +149,13 @@ public class BaseInteractable : MonoBehaviour
     virtual protected void DoInteractionAction()
     {
         Debug.LogWarning("You should be using an overriden method.");
+    }
+
+    /// <summary>
+    /// Call from event in animation when the interaction should happen
+    /// </summary>
+    public void SetAnimationFinished()
+    {
+        AnimationFinished = true;
     }
 }
