@@ -38,12 +38,19 @@ public class BaseInteractable : MonoBehaviour
 
     protected bool runningInteraction = false;
 
+    protected Timer AnimationTimer = null;
+
     protected void Awake()
     {
         foreach (eInteractionRequirement ir in InteractionRequirements)
         {
             InteractionRequirement |= ir;
         }
+    }
+
+    protected void Start()
+    {
+        AnimationTimer = TimerManager.Instance.CreateNewTimer(AnimationTime);
     }
 
     public void AddToTotalTriggers()
@@ -112,7 +119,8 @@ public class BaseInteractable : MonoBehaviour
         switch (interactionDelay)
         {
             case eActivateInteraction.afterDelay:
-                for (float delay = AnimationTime; delay > 0.0f; delay -= Time.deltaTime)
+                AnimationTimer.Restart();
+                while (!AnimationTimer.IsFinished)
                 {
                     yield return null;
                 }
