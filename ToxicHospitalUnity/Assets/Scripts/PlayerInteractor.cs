@@ -7,6 +7,8 @@ public class PlayerInteractor : MonoBehaviour
 {
     public eInteractionRequirement CurrentCharacter = eInteractionRequirement.journalist;
     private List<BaseInteractable> interactables = new List<BaseInteractable>();
+    // ~~~ reference to player controller probably
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +51,15 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (interactable.CanInteract(CurrentCharacter))
         {
-            interactable.TriggerInteraction(CurrentCharacter, transform);
+            PlayerInteractionResponse(interactable.TriggerInteraction(CurrentCharacter, transform));
             return true;
         }
         return false;
+    }
+
+    private void PlayerInteractionResponse(bool stopMoving)
+    {
+        // ~~~ respond to information from interactable (likely an enum in future)
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

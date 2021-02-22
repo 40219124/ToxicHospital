@@ -23,7 +23,7 @@ public class BaseInteractable : MonoBehaviour
     public float AnimationTime = 0.5f;
 
     [SerializeField]
-    protected bool interactionStopsPlayer = true;
+    protected bool interactionStopsPlayer = true; // ~~~ interaction type enum later to feed back more info to player
 
     protected bool runningInteraction = false;
 
