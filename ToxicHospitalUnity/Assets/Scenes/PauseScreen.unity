@@ -398,7 +398,7 @@ RectTransform:
   - {fileID: 1742227470}
   - {fileID: 1892597116}
   m_Father: {fileID: 2009763832}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -437,7 +437,7 @@ RectTransform:
   m_Children:
   - {fileID: 470175982}
   m_Father: {fileID: 2009763832}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -536,8 +536,9 @@ GameObject:
   m_Component:
   - component: {fileID: 283292265}
   - component: {fileID: 283292266}
+  - component: {fileID: 283292267}
   m_Layer: 5
-  m_Name: MusicSlider
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,13 +610,39 @@ MonoBehaviour:
   m_FillRect: {fileID: 1661615120}
   m_HandleRect: {fileID: 2013727606}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 283292267}
+        m_TargetAssemblyTypeName: ExposeMixer, Assembly-CSharp
+        m_MethodName: SetChannelLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &283292267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283292264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bfada3301935f4dbf6df1355e272e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: dfb3ace44c482c043b11b8b1ad5bab81, type: 2}
+  ChannelString: SFXVolume
 --- !u!1 &442663395
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +654,7 @@ GameObject:
   - component: {fileID: 442663396}
   - component: {fileID: 442663397}
   m_Layer: 5
-  m_Name: MusicSlider (1)
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,10 +726,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2030567759}
   m_HandleRect: {fileID: 456564984}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1001,7 +1028,7 @@ GameObject:
   - component: {fileID: 506733400}
   - component: {fileID: 506733401}
   m_Layer: 5
-  m_Name: MusicSlider (2)
+  m_Name: MasterSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,10 +1100,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 55544825}
   m_HandleRect: {fileID: 651963220}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2626,8 +2653,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1317397815}
-  - {fileID: 168817884}
   - {fileID: 228467053}
+  - {fileID: 168817884}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
