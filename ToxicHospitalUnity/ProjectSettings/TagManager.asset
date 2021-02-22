@@ -41,3 +41,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2058556221
+    locked: 0
+  - name: Midground
+    uniqueID: 1082018233
+    locked: 0
+  - name: Floor
+    uniqueID: 3224293677
+    locked: 0
+  - name: Detail
+    uniqueID: 178850163
+    locked: 0
+  - name: Enemy
+    uniqueID: 3170956057
+    locked: 0
+  - name: Player
+    uniqueID: 2290628765
+    locked: 0
+  - name: ProminentDetail
+    uniqueID: 1315780791
+    locked: 0
+  - name: Foreground
+    uniqueID: 2597177957
+    locked: 0
