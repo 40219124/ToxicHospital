@@ -18,6 +18,10 @@ public class PlayerInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (VisualLoreCanvasManager.Instance.isActiveAndEnabled)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Interact"))
         {
             if(interactables.Count == 0)
