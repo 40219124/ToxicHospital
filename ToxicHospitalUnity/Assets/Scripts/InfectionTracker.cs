@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InfectionTracker : MonoBehaviour
 {
-    public float InfectionProgress;
+    public float InfectionProgress = 0;
+    public float MaxInfection = 100;
+    public float RecoveryRate;
     public bool DepthBasedInfection;
+    public float BloomIntensityMultiplier = 1;
+
 
     [SerializeField] private float ratePerSecond = 0;
+    [SerializeField] private Material spriteGlow;
+    [SerializeField] private Color tint;
+    [SerializeField] private Color baseColour;
+
 
     private bool infecting = false;
     private float depth;
     private Collider2D playerCollider;
+    private float intensity;
+    private float infectionPercent;
 
     private void Start()
     {
@@ -22,7 +33,7 @@ public class InfectionTracker : MonoBehaviour
     {
 
         Vector3 distanceToCentre = trigger.transform.position - transform.position;
-        Debug.Log("Distance to centre = " + distanceToCentre);
+        //Debug.Log("Distance to centre = " + distanceToCentre);
 
         //get the edge of the player collider to the centre of the trigger collider
         //float actualDistanceToCentre = Mathf.Abs(distanceToCentre.x) - (playerCollider.bounds.size.x / 2);
@@ -31,8 +42,8 @@ public class InfectionTracker : MonoBehaviour
         float lateralDepth = (trigger.bounds.size.x / 2) - (Mathf.Abs(distanceToCentre.x) - playerCollider.bounds.size.x);
         float verticallDepth = (trigger.bounds.size.y / 2) - (Mathf.Abs(distanceToCentre.y) - playerCollider.bounds.size.y);
 
-        Debug.Log("Depth x in trigger = " + lateralDepth);
-        Debug.Log("Depth y in trigger = " + verticallDepth);
+        //Debug.Log("Depth x in trigger = " + lateralDepth);
+        //Debug.Log("Depth y in trigger = " + verticallDepth);
 
         if (lateralDepth < 0 && verticallDepth < 0)
         {
@@ -52,6 +63,12 @@ public class InfectionTracker : MonoBehaviour
 
     }
 
+    private void IncrementBloom(float percentage)
+    {
+        intensity = Mathf.Max(1, infectionPercent * BloomIntensityMultiplier);
+        spriteGlow.SetColor("_HDR", baseColour * Mathf.Pow(2, intensity));
+    }
+
 
     //OnTriggerStay used so that the rate will keep being added if entering another nearby zone before leaving current one
     void OnTriggerStay2D(Collider2D other)
@@ -59,7 +76,6 @@ public class InfectionTracker : MonoBehaviour
         if (DepthBasedInfection)
         {
             depth = GetDepthInArea(other);
-            //Debug.Log("Depth in trigger = " + depth);
         }
 
 
@@ -83,6 +99,7 @@ public class InfectionTracker : MonoBehaviour
     void Update()
     {
 
+
         if (infecting)
         {
             if (DepthBasedInfection)
@@ -93,6 +110,22 @@ public class InfectionTracker : MonoBehaviour
             {
                 InfectionProgress += ratePerSecond * Time.deltaTime;
             }
+
+        }
+        else
+        {
+            if (InfectionProgress > 0)
+            {
+                InfectionProgress -= RecoveryRate * Time.deltaTime;
+            }
+        }
+
+        infectionPercent = InfectionProgress / MaxInfection;
+        IncrementBloom(infectionPercent);
+
+        if (InfectionProgress >= MaxInfection)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }
