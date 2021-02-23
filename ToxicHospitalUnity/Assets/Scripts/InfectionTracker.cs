@@ -10,14 +10,16 @@ public class InfectionTracker : MonoBehaviour
     public float RecoveryRate;
     public bool DepthBasedInfection;
     public float BloomIntensityMultiplier = 1;
+    public float damageRate = 5;
 
 
     [SerializeField] private float ratePerSecond = 0;
     [SerializeField] private Material spriteGlow;
-    [SerializeField] private Color tint;
     [SerializeField] private Color baseColour;
+    [SerializeField] float maxHealth = 100;
 
 
+    private float currentHealth = 100;
     private bool infecting = false;
     private float depth;
     private Collider2D playerCollider;
@@ -67,6 +69,14 @@ public class InfectionTracker : MonoBehaviour
     {
         intensity = Mathf.Max(1, infectionPercent * BloomIntensityMultiplier);
         spriteGlow.SetColor("_HDR", baseColour * Mathf.Pow(2, intensity));
+    }
+
+    private void TakeDamage()
+    {
+        if (infectionPercent.Equals(infectionPercent))
+        {
+            currentHealth -= damageRate * Time.deltaTime;
+        }
     }
 
 
@@ -123,7 +133,7 @@ public class InfectionTracker : MonoBehaviour
         infectionPercent = InfectionProgress / MaxInfection;
         IncrementBloom(infectionPercent);
 
-        if (InfectionProgress >= MaxInfection)
+        if (InfectionProgress >= MaxInfection || currentHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
