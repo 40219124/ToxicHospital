@@ -250,11 +250,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2edb263932635409440696d4428fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionRequirements: 02000000
-  interactionDelay: 2
-  AnimationFinished: 0
-  AnimationTime: 1
+  InteractionRequirements: 04000000
+  interactionDelay: 3
+  animationFinished: 0
+  animationTime: 0.5
   interactionStopsPlayer: 1
+  triggerType: 0
+  deactivationType: 2
+  deactivationDelay: 1
+  triggerTargets: []
   visualLore: {fileID: 11400000, guid: 8beb2e4ce95f4ef4cb655ab43e113d43, type: 2}
 --- !u!1 &636831648
 GameObject:
@@ -348,13 +352,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
+      propertyPath: triggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
+        type: 3}
+      propertyPath: triggerTargets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
+        type: 3}
+      propertyPath: triggerTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 602885640}
+    - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
+        type: 3}
       propertyPath: InteractionRequirements.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
       propertyPath: InteractionRequirements.Array.data[0]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2466239487343171513, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
@@ -514,7 +533,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d0f41537439c0c24cbedb3367be90273, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -854,6 +873,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VisualLoreCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 286100904756092125, guid: 527a4d703e41e5645981ca3f5ab599bf,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 286100904756092125, guid: 527a4d703e41e5645981ca3f5ab599bf,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 286100904756092125, guid: 527a4d703e41e5645981ca3f5ab599bf,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 286100904756092125, guid: 527a4d703e41e5645981ca3f5ab599bf,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 1150162056696507073, guid: 527a4d703e41e5645981ca3f5ab599bf,
         type: 3}
