@@ -507,6 +507,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 7749571952560564559, guid: 980dadce3f00c674d81e5cb3b4015229,
+        type: 3}
+      propertyPath: m_RotationalOffset
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 7749571952560564561, guid: 980dadce3f00c674d81e5cb3b4015229,
         type: 3}
       propertyPath: m_Name
@@ -928,6 +933,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1431810160550802548, guid: 738f888c1c8b84f4c98d0879db370820,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431810160550802548, guid: 738f888c1c8b84f4c98d0879db370820,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1431810161267954930, guid: 738f888c1c8b84f4c98d0879db370820,
         type: 3}
       propertyPath: m_Name
