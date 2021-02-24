@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UseCats
   m_EditorClassIdentifier: 
   objectName: Artistic Advice
-  objectSprite: {fileID: 21300000, guid: 067daef58067e0041b9afefd11b1712f, type: 3}
+  objectSprite: {fileID: 21300000, guid: f071c556c95efb944a4b4f463d7cab9b, type: 3}
   classification: 1
   objectText: 'Use cats
 

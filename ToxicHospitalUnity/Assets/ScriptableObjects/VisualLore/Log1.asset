@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Log1
   m_EditorClassIdentifier: 
   objectName: Captain's Log
-  objectSprite: {fileID: 21300000, guid: f071c556c95efb944a4b4f463d7cab9b, type: 3}
+  objectSprite: {fileID: 21300000, guid: 16dd32f46f1999b4eb6e6e32dd47bea3, type: 3}
   classification: 2
   objectText: "Captain's Log, Stardate 46984.6. \nNo additional Borg attacks have
     been reported in the past two days. However Starfleet has dispatched Admiral

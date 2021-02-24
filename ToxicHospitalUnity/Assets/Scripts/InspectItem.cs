@@ -14,21 +14,17 @@ public class InspectItem : MonoBehaviour
     //must be able to access the actual inventory in the event it needs to later
     LoreType type;
     int inventoryIndex;
-    void Start()
-    {
-        Debug.Log("Start");
-
-    }
 
     public void Initialise(LoreItem item, int invIndex)
     {
+        //stuff that would normally go in start
         Debug.Log("Init");
         inventoryIcon = gameObject.GetComponent<Image>();
         button = gameObject.GetComponent<Button>();
         label = GetComponentInChildren<TextMeshProUGUI>();
         layoutIndex = gameObject.transform.GetSiblingIndex();
 
-
+        //passing relevant data anout the asset/inventory
         Debug.Log("Item: " + item.name);
         inventoryIcon.sprite = item.objectSprite;
         label.text = item.objectName;
@@ -37,6 +33,7 @@ public class InspectItem : MonoBehaviour
 
     void Inspect()
     {
-        //TODO, make it show text or play audio when clicked
+        //if audio show transcript and play sound
+
     }
 }
