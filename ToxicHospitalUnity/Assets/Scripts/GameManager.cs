@@ -5,10 +5,16 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class UIToggleEvent : UnityEvent<string> { }
+public class LoreItemEvent : UnityEvent<LoreItem> { }
 
 public class GameManager : MonoBehaviour
 {
     public static UIToggleEvent Pause;
+    public static LoreItemEvent AddToInventory;
+
+
+    [HideInInspector]
+    public Inventory Inventory;
 
     void Awake()
     {
@@ -17,8 +23,13 @@ public class GameManager : MonoBehaviour
             Pause = new UIToggleEvent();
         }
 
-        //Always have the pause menu as available on load
-        SceneManager.LoadSceneAsync("PauseScreen", LoadSceneMode.Additive);
+        //Always have the pause menu and inventory are available on load
+        //SceneManager.LoadSceneAsync("PauseScreen", LoadSceneMode.Additive);
+        //SceneManager.LoadSceneAsync("InventoryScene", LoadSceneMode.Additive);
+
+        Inventory = Inventory.Instance;
+        AddToInventory.AddListener(Inventory.AddItem);
+
     }
     void Update()
     {
