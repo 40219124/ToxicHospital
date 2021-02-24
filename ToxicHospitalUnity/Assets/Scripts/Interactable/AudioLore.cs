@@ -7,4 +7,11 @@ using UnityEngine.Audio;
 public class AudioLore : LoreItem
 {
     public AudioClip audioFile;
+    [TextArea(3, 10)]
+    public string transcript;
+
+    private void Awake()
+    {
+        classification = LoreType.AudioLog;
+    }
 }
