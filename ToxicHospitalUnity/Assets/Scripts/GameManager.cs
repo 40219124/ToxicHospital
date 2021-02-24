@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PauseEvent : UnityEvent<string> { }
+public class UIToggleEvent : UnityEvent<string> { }
 
 public class GameManager : MonoBehaviour
 {
-    public static PauseEvent Pause;
+    public static UIToggleEvent Pause;
 
     void Awake()
     {
         if (Pause == null)
         {
-            Pause = new PauseEvent();
+            Pause = new UIToggleEvent();
         }
     }
     void Update()
