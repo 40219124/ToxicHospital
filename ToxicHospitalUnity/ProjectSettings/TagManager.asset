@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Infection
   - InvLayouts
+  - Ground
   layers:
   - Default
   - TransparentFX

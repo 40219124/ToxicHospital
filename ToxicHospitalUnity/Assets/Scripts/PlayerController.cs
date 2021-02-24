@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     private eInputMovementInstruction currentMove = eInputMovementInstruction.none;
     private eInputMovementInstruction nextMove = eInputMovementInstruction.none;
     private Vector2 inputDirection;
-    private bool jumping = false;
-    private float prevYVel = 0.0f;
 
     private enum eInputActionInstruction { none, interact }
     private eInputActionInstruction currentAction = eInputActionInstruction.none;
@@ -26,16 +24,20 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 13.0f;
 
     private Rigidbody2D rigidbody;
+    private Collider2D collider;
+
+    private GroundChecker groundChecker;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
+        groundChecker = GetComponentInChildren<GroundChecker>();
     }
 
     // Update is called once per frame
@@ -69,17 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void PhysicsUpdate()
     {
-        if (jumping)
-        {
-            if(!(rigidbody.velocity.y < prevYVel))
-            {
-                jumping = false;
-            }
-        }
-
-        prevYVel = rigidbody.velocity.y;
-
-        if (currentMove == eInputMovementInstruction.none && nextMove == eInputMovementInstruction.none)
+        if (currentMove == eInputMovementInstruction.none && nextMove == eInputMovementInstruction.none && rigidbody.velocity.Equals(Vector2.zero))
         {
             return;
         }
@@ -98,18 +90,17 @@ public class PlayerController : MonoBehaviour
             rigidbody.velocity = velocity;
         }
 
-        if(nextMove == eInputMovementInstruction.jump && !jumping)
+        if(nextMove == eInputMovementInstruction.jump && groundChecker.PlayerCanJump)
         {
-            jumping = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce); // ~~~ only if grounded
-            prevYVel = rigidbody.velocity.y + float.Epsilon;
+            groundChecker.PlayerJumpStart(jumpForce);
         }
 
-        if (velocity.Equals(Vector2.zero) && !jumping)
+        if (velocity.Equals(Vector2.zero) && !groundChecker.PlayerIsJumping)
         {
             currentMove = eInputMovementInstruction.none;
         }
-        else if (jumping)
+        else if (groundChecker.PlayerIsJumping)
         {
             currentMove = eInputMovementInstruction.jump;
         }
@@ -130,5 +121,17 @@ public class PlayerController : MonoBehaviour
         {
             currentCharacter = eInteractionRequirement.journalist;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        /*Debug.Log("Start Collision Print");
+        List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+        collider.GetContacts(contacts);
+        foreach (ContactPoint2D point in contacts)
+        {
+            Debug.Log($"Contact normal {point.normal}");
+        }
+        Debug.Log("End Collision Print");*/
     }
 }
