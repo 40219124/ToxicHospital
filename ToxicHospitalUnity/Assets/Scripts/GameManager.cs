@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class UIToggleEvent : UnityEvent<string> { }
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
         {
             Pause = new UIToggleEvent();
         }
+
+        //Always have the pause menu as available on load
+        SceneManager.LoadSceneAsync("PauseScreen", LoadSceneMode.Additive);
     }
     void Update()
     {
