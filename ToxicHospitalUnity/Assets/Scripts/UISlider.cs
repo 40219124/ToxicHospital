@@ -38,7 +38,9 @@ public class UISlider : MonoBehaviour
 
     private void Start()
     {
+        //must subscribe method to each event individually
         GameManager.PauseEvent.AddListener(Toggle);
+        GameManager.ToggleIventoryEvent.AddListener(Toggle);
 
         screenOffsets[0] = new Vector3(0, Screen.height, 0);
         screenOffsets[1] = new Vector3(0, -Screen.height, 0);
@@ -77,14 +79,14 @@ public class UISlider : MonoBehaviour
     {
         LeanTween.cancel(gameObject);
         LeanTween.move(rect, showingPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
-        Debug.Log("Show " + showingPosition);
+        //Debug.Log("Show " + showingPosition);
     }
 
     public void Hide()
     {
         LeanTween.cancel(gameObject);
         LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
-        Debug.Log("Hide " + hiddenPosition);
+        //Debug.Log("Hide " + hiddenPosition);
     }
 
 }
