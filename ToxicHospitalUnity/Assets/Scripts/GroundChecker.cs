@@ -98,7 +98,7 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Ground"))
+        if (collision.CompareTag("Ground"))
         {
             SetGrounded(true);
             GroundCount++;
@@ -107,7 +107,7 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Ground"))
+        if (collision.CompareTag("Ground"))
         {
             GroundCount--;
         }
