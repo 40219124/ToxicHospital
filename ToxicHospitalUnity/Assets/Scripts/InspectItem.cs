@@ -37,6 +37,6 @@ public class InspectItem : MonoBehaviour
 
     void Inspect()
     {
-        //TODO, make it show text or play audio
+        //TODO, make it show text or play audio when clicked
     }
 }
