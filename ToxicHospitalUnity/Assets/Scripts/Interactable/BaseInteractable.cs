@@ -85,7 +85,7 @@ public class BaseInteractable : MonoBehaviour
         currentTriggerCount++;
         if (currentTriggerCount == requiredTriggerCount)
         {
-            TriggerInteraction(InteractionRequirement, transform);
+            TriggerInteraction(eInteractionRequirement.triggers, transform);
         }
     }
 
