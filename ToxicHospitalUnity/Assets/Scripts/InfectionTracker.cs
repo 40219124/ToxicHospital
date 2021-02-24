@@ -65,51 +65,8 @@ public class InfectionTracker : MonoBehaviour
 
     }
 
-    private void IncrementBloom(float percentage)
+    private void IncrementInfection()
     {
-        intensity = Mathf.Max(1, infectionPercent * BloomIntensityMultiplier);
-        spriteGlow.SetColor("_HDR", baseColour * Mathf.Pow(2, intensity));
-    }
-
-    private void TakeDamage()
-    {
-        if (infectionPercent.Equals(infectionPercent))
-        {
-            currentHealth -= damageRate * Time.deltaTime;
-        }
-    }
-
-
-    //OnTriggerStay used so that the rate will keep being added if entering another nearby zone before leaving current one
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (DepthBasedInfection)
-        {
-            depth = GetDepthInArea(other);
-        }
-
-
-        if (other.name.Contains("InfectionArea"))
-        {
-            infecting = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        depth = 0;
-
-        if (other.name.Contains("InfectionArea"))
-        {
-            infecting = false;
-        }
-    }
-
-
-    void Update()
-    {
-
-
         if (infecting)
         {
             if (DepthBasedInfection)
@@ -131,12 +88,67 @@ public class InfectionTracker : MonoBehaviour
         }
 
         infectionPercent = InfectionProgress / MaxInfection;
-        IncrementBloom(infectionPercent);
+    }
 
-        if (InfectionProgress >= MaxInfection || currentHealth <= 0)
+    private void IncrementBloom()
+    {
+        intensity = Mathf.Max(1, infectionPercent * BloomIntensityMultiplier);
+        spriteGlow.SetColor("_HDR", baseColour * Mathf.Pow(2, intensity));
+    }
+
+    private void TakeDamage()
+    {
+        if (infectionPercent.Equals(1.0f))
+        {
+            currentHealth -= damageRate * Time.deltaTime;
+        }
+
+    }
+
+    private void EvaluateDeath()
+    {
+        if (currentHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+
+    //OnTriggerStay used so that the rate will keep being added if entering another nearby zone before leaving current one
+    void OnTriggerStay2D(Collider2D other)
+    {
+
+
+        if (other.tag == "Infection")
+        {
+            infecting = true;
+
+            if (DepthBasedInfection)
+            {
+                depth = GetDepthInArea(other);
+            }
+        }
+    }
+
+    //TODO change from boolean check to count of triggers entered and exited to tell if still being affected.
+    void OnTriggerExit2D(Collider2D other)
+    {
+        depth = 0;
+
+        if (other.tag == "Infection")
+        {
+            infecting = false;
+        }
+    }
+
+
+    void Update()
+    {
+
+        IncrementInfection();
+        IncrementBloom();
+        TakeDamage();
+        EvaluateDeath();
 
     }
 }
