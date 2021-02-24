@@ -38,7 +38,7 @@ public class UISlider : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Pause.AddListener(Toggle);
+        GameManager.PauseEvent.AddListener(Toggle);
 
         screenOffsets[0] = new Vector3(0, Screen.height, 0);
         screenOffsets[1] = new Vector3(0, -Screen.height, 0);
