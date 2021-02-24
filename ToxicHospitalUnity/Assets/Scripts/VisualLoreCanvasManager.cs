@@ -38,7 +38,14 @@ public class VisualLoreCanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ~~~ input for read/close
+        if (Input.GetButtonDown("Interact"))
+        {
+            ReadInput();
+        }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ExitInput();
+        }
     }
 
     public void UpdateAndOpen(VisualLore vl)
