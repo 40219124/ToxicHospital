@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Daniel - Test.unity
+    path: Assets/Resources/Scenes/Daniel - Test.unity
     guid: e1d8c15f43bcfe14086be5a2d981637c
   - enabled: 1
-    path: Assets/Scenes/PauseScreen.unity
+    path: Assets/Resources/Scenes/PauseScreen.unity
     guid: b2185e99846076c4a83f4bf8a80f19c8
+  - enabled: 1
+    path: Assets/Resources/Scenes/InventoryScene.unity
+    guid: f7dbc5faff1e69f488e07f8386d807d7
   m_configObjects: {}
