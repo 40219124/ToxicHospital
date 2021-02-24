@@ -18,7 +18,8 @@ public class UISlider : MonoBehaviour
 
     public HideDirection Direction;
 
-    [SerializeField] private string PopUpName;
+    [SerializeField] private string popUpName;
+    [SerializeField] private float easeTime;
 
 
     private bool showing = false;
@@ -55,7 +56,7 @@ public class UISlider : MonoBehaviour
 
     public void Toggle(string identifier)
     {
-        if (identifier == PopUpName)
+        if (identifier == popUpName)
         {
             if (showing)
             {
@@ -75,14 +76,14 @@ public class UISlider : MonoBehaviour
     public void Show()
     {
         LeanTween.cancel(gameObject);
-        LeanTween.move(rect, showingPosition, 0.5f).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
+        LeanTween.move(rect, showingPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
         Debug.Log("Show " + showingPosition);
     }
 
     public void Hide()
     {
         LeanTween.cancel(gameObject);
-        LeanTween.move(rect, hiddenPosition, 0.5f).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
+        LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
         Debug.Log("Hide " + hiddenPosition);
     }
 
