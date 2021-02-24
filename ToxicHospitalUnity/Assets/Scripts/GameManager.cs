@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Inventory Inventory;
 
+    public List<LoreItem> TEST = new List<LoreItem>();
+
     void Awake()
     {
         if (PauseEvent == null)
@@ -41,6 +43,10 @@ public class GameManager : MonoBehaviour
         Inventory = Inventory.Instance;
         AddToInventory.AddListener(Inventory.AddItem);
 
+
+
+
+
     }
     void Update()
     {
@@ -55,6 +61,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleIventoryEvent.Invoke("inventory");
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            //strictly for testing purposes DELETE AFTERWARDS
+            Debug.LogWarning("Remove this testing code when finished.");
+            foreach (LoreItem t in TEST)
+            {
+                AddToInventory.Invoke(t);
+            }
         }
     }
 }

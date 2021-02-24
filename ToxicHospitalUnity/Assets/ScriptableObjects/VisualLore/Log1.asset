@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Captain's Log
   objectSprite: {fileID: 21300000, guid: f071c556c95efb944a4b4f463d7cab9b, type: 3}
-  classification: 0
+  classification: 2
   objectText: "Captain's Log, Stardate 46984.6. \nNo additional Borg attacks have
     been reported in the past two days. However Starfleet has dispatched Admiral
     Necheyev to take command in this sector in preparation for a possible Borg invasion."

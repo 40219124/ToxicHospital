@@ -12,7 +12,8 @@ public abstract class LoreItem : ScriptableObject
 
 public enum LoreType
 {
-    Report,
+    AudioLog,
     Letter,
-    AudioLog
+    Report
+
 }
