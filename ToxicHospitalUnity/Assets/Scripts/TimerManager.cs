@@ -78,7 +78,7 @@ public class Timer
     /// <returns></returns>
     public float Progress
     {
-        get { return Mathf.Max(1.0f, 1.0f - (timeRemaining / timerDuration)); }
+        get { return Mathf.Min(1.0f, 1.0f - (timeRemaining / timerDuration)); }
     }
 }
 public class TimerManager : MonoBehaviour

@@ -72,7 +72,7 @@ public class BaseInteractable : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer}");
+        //Debug.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer.Progress}");
     }
 
     public void AddToTotalTriggers()
