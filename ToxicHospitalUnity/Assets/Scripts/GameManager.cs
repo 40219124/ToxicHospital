@@ -10,7 +10,7 @@ public class LoreItemEvent : UnityEvent<LoreItem> { }
 public class GameManager : MonoBehaviour
 {
     public static UIToggleEvent PauseEvent;
-    public static UIToggleEvent OpenIventoryEvent;
+    public static UIToggleEvent ToggleIventoryEvent;
     public static LoreItemEvent AddToInventory;
 
 
@@ -22,6 +22,16 @@ public class GameManager : MonoBehaviour
         if (PauseEvent == null)
         {
             PauseEvent = new UIToggleEvent();
+        }
+
+        if (ToggleIventoryEvent == null)
+        {
+            ToggleIventoryEvent = new UIToggleEvent();
+        }
+
+        if (AddToInventory == null)
+        {
+            AddToInventory = new LoreItemEvent();
         }
 
         //Always have the pause menu and inventory are available on load
@@ -39,6 +49,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseEvent.Invoke("pause");
+        }
+
+        //check for inventory open/close
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ToggleIventoryEvent.Invoke("inventory");
         }
     }
 }
