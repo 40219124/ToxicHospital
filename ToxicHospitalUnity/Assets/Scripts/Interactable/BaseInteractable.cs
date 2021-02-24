@@ -30,15 +30,27 @@ public class BaseInteractable : MonoBehaviour
     protected enum eActivateInteraction { never, afterAnimation, afterDelay, immediately }
     [SerializeField]
     protected eActivateInteraction interactionDelay = eActivateInteraction.afterDelay;
-    public bool AnimationFinished = false;
-    public float AnimationTime = 0.5f;
+    public bool animationFinished = false;
+    public float animationTime = 0.5f;
+    protected Timer activationTimer = null;
 
     [SerializeField]
     protected bool interactionStopsPlayer = true; // ~~~ interaction type enum later to feed back more info to player
 
     protected bool runningInteraction = false;
 
-    protected Timer AnimationTimer = null;
+    protected enum eTriggerType { none, oneAndDone, toggle, temporary }
+    [Space(10.0f)]
+    [SerializeField]
+    protected eTriggerType triggerType = eTriggerType.none;
+    protected bool triggerActive = false;
+    [SerializeField]
+    protected eActivateInteraction deactivationType = eActivateInteraction.afterDelay;
+    [SerializeField]
+    protected float deactivationDelay = 1.0f;
+    protected Timer deactivationTimer = null;
+    [SerializeField]
+    protected List<BaseInteractable> triggerTargets = new List<BaseInteractable>();
 
     protected void Awake()
     {
@@ -50,7 +62,17 @@ public class BaseInteractable : MonoBehaviour
 
     protected void Start()
     {
-        AnimationTimer = TimerManager.Instance.CreateNewTimer(AnimationTime);
+        activationTimer = TimerManager.Instance.CreateNewTimer(animationTime);
+        deactivationTimer = TimerManager.Instance.CreateNewTimer(deactivationDelay);
+        foreach (BaseInteractable bi in triggerTargets)
+        {
+            bi.AddToTotalTriggers();
+        }
+    }
+
+    private void Update()
+    {
+        //Debug.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer.Progress}");
     }
 
     public void AddToTotalTriggers()
@@ -105,32 +127,64 @@ public class BaseInteractable : MonoBehaviour
     virtual protected IEnumerator ManageInteraction()
     {
         runningInteraction = true;
-        yield return StartCoroutine(WaitBeforeInteraction());
+        yield return StartCoroutine(WaitBeforeInteraction(interactionDelay, activationTimer));
         DoInteractionAction();
+        if (triggerType != eTriggerType.none && triggerTargets.Count > 0)
+        {
+            StartCoroutine(ManageTriggering());
+        }
         runningInteraction = false;
+    }
+
+    /// <summary>
+    /// Controls 
+    /// </summary>
+    /// <returns></returns>
+    virtual protected IEnumerator ManageTriggering()
+    {
+        if (triggerActive)
+        {
+            if (triggerType == eTriggerType.toggle)
+            {
+                EndTriggering();
+            }
+            else if (triggerType == eTriggerType.temporary)
+            {
+                deactivationTimer.Restart();
+            }
+        }
+        else
+        {
+            ActAsTrigger();
+            if (triggerType == eTriggerType.temporary)
+            {
+                yield return WaitBeforeInteraction(deactivationType, deactivationTimer);
+                EndTriggering();
+            }
+        }
     }
 
     /// <summary>
     /// Waits for the appropriate time before allowing an interaction to take place
     /// </summary>
     /// <returns></returns>
-    virtual protected IEnumerator WaitBeforeInteraction()
+    virtual protected IEnumerator WaitBeforeInteraction(eActivateInteraction waitType, Timer timer = null)
     {
-        switch (interactionDelay)
+        switch (waitType)
         {
             case eActivateInteraction.afterDelay:
-                AnimationTimer.Restart();
-                while (!AnimationTimer.IsFinished)
+                timer.Restart();
+                while (!timer.IsFinished)
                 {
                     yield return null;
                 }
                 break;
             case eActivateInteraction.afterAnimation:
-                while (!AnimationFinished)
+                while (!animationFinished)
                 {
                     yield return null;
                 }
-                AnimationFinished = false;
+                animationFinished = false;
                 break;
             case eActivateInteraction.never:
                 while (true)
@@ -140,6 +194,29 @@ public class BaseInteractable : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Inform objects triggered by this that it is active
+    /// </summary>
+    virtual protected void ActAsTrigger()
+    {
+        triggerActive = true;
+        foreach (BaseInteractable bi in triggerTargets)
+        {
+            bi.AddToCurrentTriggers();
+        }
+    }
+    /// <summary>
+    /// Inform objects triggered by this that it is no longer active
+    /// </summary>
+    virtual protected void EndTriggering()
+    {
+        triggerActive = false;
+        foreach (BaseInteractable bi in triggerTargets)
+        {
+            bi.SubFromCurrentTriggers();
         }
     }
 
@@ -156,6 +233,6 @@ public class BaseInteractable : MonoBehaviour
     /// </summary>
     public void SetAnimationFinished()
     {
-        AnimationFinished = true;
+        animationFinished = true;
     }
 }
