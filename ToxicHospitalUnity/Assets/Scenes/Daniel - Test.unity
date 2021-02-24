@@ -947,6 +947,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 41623823732024906, guid: 3ab45bc0715cae442acb1ff6eb8276c1,
+        type: 3}
+      propertyPath: INVTEST.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 41623823732024906, guid: 3ab45bc0715cae442acb1ff6eb8276c1,
+        type: 3}
+      propertyPath: INVTEST.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 08cd25c68a782a147b24f1103885076a,
+        type: 2}
+    - target: {fileID: 41623823732024906, guid: 3ab45bc0715cae442acb1ff6eb8276c1,
+        type: 3}
+      propertyPath: INVTEST.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8beb2e4ce95f4ef4cb655ab43e113d43,
+        type: 2}
+    - target: {fileID: 41623823732024906, guid: 3ab45bc0715cae442acb1ff6eb8276c1,
+        type: 3}
+      propertyPath: INVTEST.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 352990680d8dd4f4a97d268243e3603d,
+        type: 2}
     - target: {fileID: 41623823732024907, guid: 3ab45bc0715cae442acb1ff6eb8276c1,
         type: 3}
       propertyPath: m_Name
