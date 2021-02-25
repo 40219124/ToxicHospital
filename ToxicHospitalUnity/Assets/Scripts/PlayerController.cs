@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private GroundChecker groundChecker;
 
+    private Animator animator;
+
     private void Awake()
     {
     }
@@ -38,17 +40,25 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         InputUpdate();
+        AnimatorUpdate();
     }
 
     private void FixedUpdate()
     {
         PhysicsUpdate();
+    }
+
+    private void AnimatorUpdate()
+    {
+        animator.SetBool("FacingRight", rigidbody.velocity.x == 0 ? animator.GetBool("FacingRight") : rigidbody.velocity.x > 0);
+        animator.SetInteger("MoveAction", (int)currentMove);
     }
 
     private void InputUpdate()
@@ -90,7 +100,7 @@ public class PlayerController : MonoBehaviour
             rigidbody.velocity = velocity;
         }
 
-        if(nextMove == eInputMovementInstruction.jump && groundChecker.PlayerCanJump)
+        if (nextMove == eInputMovementInstruction.jump && groundChecker.PlayerCanJump)
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce); // ~~~ only if grounded
             groundChecker.PlayerJumpStart(jumpForce);

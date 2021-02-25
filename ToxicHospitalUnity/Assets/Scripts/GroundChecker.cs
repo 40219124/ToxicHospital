@@ -48,14 +48,14 @@ public class GroundChecker : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerCanJump)
+        /*if (PlayerCanJump)
         {
             player.GetComponentInChildren<SpriteRenderer>().color = Color.green;
         }
         else
         {
             player.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
+        }*/
     }
 
     // Update is called once per frame
