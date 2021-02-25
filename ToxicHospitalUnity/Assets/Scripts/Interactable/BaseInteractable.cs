@@ -15,14 +15,8 @@ public enum eInteractionRequirement
 [RequireComponent(typeof(Collider2D))]
 public class BaseInteractable : MonoBehaviour
 {
-    protected eInteractionRequirement interactionRequirement = eInteractionRequirement.none;
-    public eInteractionRequirement InteractionRequirement
-    {
-        get { return interactionRequirement; }
-        protected set { interactionRequirement = value; }
-    }
     [SerializeField]
-    protected List<eInteractionRequirement> InteractionRequirements = new List<eInteractionRequirement>();
+    protected eInteractionRequirement InteractionRequirements;
 
     protected int requiredTriggerCount = 0;
     protected int currentTriggerCount = 0;
@@ -54,10 +48,7 @@ public class BaseInteractable : MonoBehaviour
 
     protected void Awake()
     {
-        foreach (eInteractionRequirement ir in InteractionRequirements)
-        {
-            InteractionRequirement |= ir;
-        }
+
     }
 
     protected void Start()
@@ -101,7 +92,7 @@ public class BaseInteractable : MonoBehaviour
     /// <returns></returns>
     virtual public bool CanInteract(eInteractionRequirement triggerType)
     {
-        return (triggerType & InteractionRequirement) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount && !runningInteraction;
+        return (triggerType & InteractionRequirements) != eInteractionRequirement.none && currentTriggerCount == requiredTriggerCount && !runningInteraction;
     }
 
     /// <summary>

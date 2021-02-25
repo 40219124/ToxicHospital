@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2edb263932635409440696d4428fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionRequirements: 02000000
+  InteractionRequirements: 2
   interactionDelay: 3
   animationFinished: 0
   animationTime: 3
@@ -550,6 +550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: deactivationDelay
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
+        type: 3}
+      propertyPath: InteractionRequirements
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2466239487343171512, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
