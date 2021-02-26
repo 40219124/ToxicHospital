@@ -46,12 +46,12 @@ public class BaseInteractable : MonoBehaviour
     [SerializeField]
     protected List<BaseInteractable> triggerTargets = new List<BaseInteractable>();
 
-    protected void Awake()
+    protected virtual void Awake()
     {
 
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         activationTimer = TimerManager.Instance.CreateNewTimer(animationTime);
         deactivationTimer = TimerManager.Instance.CreateNewTimer(deactivationDelay);
@@ -61,7 +61,7 @@ public class BaseInteractable : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         //Debug.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer.Progress}");
     }

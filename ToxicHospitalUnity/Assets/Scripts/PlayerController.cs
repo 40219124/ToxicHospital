@@ -144,4 +144,12 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log("End Collision Print");*/
     }
+
+    public bool IsJumping
+    {
+        get
+        {
+            return groundChecker.PlayerIsJumping;
+        }
+    }
 }
