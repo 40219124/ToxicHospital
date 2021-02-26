@@ -22,8 +22,8 @@ public class ExposeMixer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Invalid channel string: " + ChannelString);
- 
+            Debug.LogWarning("Invalid channel string: " + ChannelString);
+
         }
     }
 }

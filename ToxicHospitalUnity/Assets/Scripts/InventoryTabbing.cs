@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryTabbing : MonoBehaviour
+public class InventoryTabbing : MonoBehaviour, ISelectHandler
 {
     private GameObject pageGroup;
     private List<Transform> pages = new List<Transform>();
@@ -26,6 +27,12 @@ public class InventoryTabbing : MonoBehaviour
 
         //add ShowTab to the Button component
         gameObject.GetComponent<Button>().onClick.AddListener(ShowTab);
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        Debug.Log("OnSelect");
+        ShowTab();
     }
 
     private void ShowTab()

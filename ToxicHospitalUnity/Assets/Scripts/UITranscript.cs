@@ -35,6 +35,7 @@ public class UITranscript : MonoBehaviour
     {
         transcriptText.text = lore.transcript;
         popup.Show();
+        closeButton.Select();
     }
 
 
