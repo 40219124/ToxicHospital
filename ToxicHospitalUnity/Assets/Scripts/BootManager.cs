@@ -18,7 +18,7 @@ public class BootManager : MonoBehaviour
     {
         {eScenes.boot, "Boot"},
         {eScenes.mainMenu, "StartScreen"},
-        {eScenes.game, "Tim - Test"}, // ~~~ Real game scene please
+        {eScenes.game, "InGame"}, // ~~~ Real game scene please
         {eScenes.pause, "PauseScreen"},
         {eScenes.inventory, "InventoryScene"}
     };
