@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    private PlayerController player;
     private Rigidbody2D rigidbody;
 
     private float timeToAirborne = 0.1f;
@@ -18,6 +17,7 @@ public class GroundChecker : MonoBehaviour
     private bool airborne = false; // True while jump impulse is still in effect
     private float prevYVel = 0.0f;
 
+    private List<int> groundIDs = new List<int>();
     private int groundCount = 0;
     private int GroundCount
     {
@@ -29,9 +29,13 @@ public class GroundChecker : MonoBehaviour
             {
                 StartCoroutine(UngroundedDelay());
             }
-            else if (ungrounding)
+            else
             {
-                ungrounding = false;
+                SetGrounded(true);
+                if (ungrounding)
+                {
+                    ungrounding = false;
+                }
             }
         }
     }
@@ -40,7 +44,6 @@ public class GroundChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponentInParent<PlayerController>();
         rigidbody = GetComponentInParent<Rigidbody2D>();
         airTimer = TimerManager.Instance.CreateNewTimer(timeToAirborne);
         SetGrounded(false);
@@ -48,23 +51,23 @@ public class GroundChecker : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerCanJump)
+        /*if (PlayerCanJump)
         {
             player.GetComponentInChildren<SpriteRenderer>().color = Color.green;
         }
         else
         {
             player.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
+        }*/
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         AirborneUpdate();
-        if(grounded && !ungrounding)
+        if (grounded && !ungrounding)
         {
-            lastGroundPos = player.transform.position;
+            lastGroundPos = rigidbody.transform.position;
         }
     }
 
@@ -100,8 +103,11 @@ public class GroundChecker : MonoBehaviour
     {
         if (collision.CompareTag("Ground"))
         {
-            SetGrounded(true);
-            GroundCount++;
+            if (!groundIDs.Contains(collision.GetInstanceID()))
+            {
+                groundIDs.Add(collision.GetInstanceID());
+                GroundCount = groundIDs.Count;
+            }
         }
     }
 
@@ -109,7 +115,11 @@ public class GroundChecker : MonoBehaviour
     {
         if (collision.CompareTag("Ground"))
         {
-            GroundCount--;
+            if (groundIDs.Contains(collision.GetInstanceID()))
+            {
+                groundIDs.Remove(collision.GetInstanceID());
+                GroundCount = groundIDs.Count;
+            }
         }
     }
 
@@ -130,7 +140,7 @@ public class GroundChecker : MonoBehaviour
 
         while (ungrounding)
         {
-            if (airTimer.IsFinished || ((Vector2)player.transform.position - lastGroundPos).sqrMagnitude > lastGroundMaxDistSq)
+            if (airTimer.IsFinished || ((Vector2)rigidbody.transform.position - lastGroundPos).sqrMagnitude > lastGroundMaxDistSq)
             {
                 SetGrounded(false);
                 break;
