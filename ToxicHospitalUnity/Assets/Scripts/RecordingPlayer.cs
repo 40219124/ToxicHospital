@@ -29,6 +29,11 @@ public class RecordingPlayer : MonoBehaviour
     public void Activate(AudioLore incoming)
     {
         recording = incoming;
+        if (GameManager.ShowAudioTranscripts)
+        {
+            UITranscript.Instance.Show(recording);
+        }
+
         StartCoroutine("PlayAudio");
     }
 

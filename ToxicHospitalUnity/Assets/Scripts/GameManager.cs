@@ -9,6 +9,8 @@ public class LoreItemEvent : UnityEvent<LoreItem> { }
 
 public class GameManager : MonoBehaviour
 {
+
+    public static bool ShowAudioTranscripts = true;
     public static UIToggleEvent PauseEvent;
     public static UIToggleEvent ToggleIventoryEvent;
     public static LoreItemEvent AddToInventory;
@@ -43,11 +45,9 @@ public class GameManager : MonoBehaviour
         Inventory = Inventory.Instance;
         AddToInventory.AddListener(Inventory.AddItem);
 
-
-
-
-
     }
+
+
     void Update()
     {
 
@@ -73,5 +73,10 @@ public class GameManager : MonoBehaviour
                 AddToInventory.Invoke(t);
             }
         }
+    }
+
+    public static void ToggleTranscripts()
+    {
+        ShowAudioTranscripts = !ShowAudioTranscripts;
     }
 }
