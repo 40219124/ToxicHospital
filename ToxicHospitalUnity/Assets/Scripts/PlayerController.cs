@@ -13,9 +13,10 @@ public enum ePlayerAction
     pushing = 1 << 4,
     stopsXMovement = waiting | interacting,
     slowsXAccVel = jumping | pushing,
-    stopsJumping = waiting | interacting | jumping | pushing,
+    blocksJumping = waiting | interacting | jumping | pushing,
     rememberInteractable = waiting | interacting | pushing,
-    directionLocked = pushing | interacting | waiting
+    directionLocked = pushing | interacting | waiting,
+    blocksSwapping = waiting | interacting | jumping | pushing
     // ~~~ stopsInteracting = inMenu???    
 }
 
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private void Awake()
-    {
+    { 
     }
 
     // Start is called before the first frame update
@@ -98,10 +99,10 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("FacingRight", playerMoveVelocity.x == 0 ? animator.GetBool("FacingRight") : playerMoveVelocity.x > 0);
         }
         animator.SetInteger("MoveAction", (int)currentMove);
-        if(playerAction == ePlayerAction.pushing)
+        if (playerAction == ePlayerAction.pushing)
         {
             bool pushing = false;
-            if(Vector2.Dot(currentInteraction.transform.position - transform.position, playerMoveVelocity) > 0)
+            if (Vector2.Dot(currentInteraction.transform.position - transform.position, playerMoveVelocity) > 0)
             {
                 pushing = true;
             }
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private void InputUpdate()
     {
-        if ((playerAction & ePlayerAction.stopsXMovement) == ePlayerAction.none)
+        if (!ActionInGroup(playerAction, ePlayerAction.stopsXMovement))
         {
             inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if (currentMove != eInputMovementInstruction.jump && !inputDirection.Equals(Vector2.zero) && nextMove != eInputMovementInstruction.jump)
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             inputDirection = Vector2.zero;
         }
-        if ((playerAction & ePlayerAction.stopsJumping) == ePlayerAction.none)
+        if (!ActionInGroup(playerAction, ePlayerAction.blocksJumping))
         {
             if (Input.GetButtonDown("Jump") && currentMove != eInputMovementInstruction.jump)
             {
@@ -204,7 +205,7 @@ public class PlayerController : MonoBehaviour
         {
             float acceleration = 0.0f;
             acceleration = Mathf.Sign(velocityDiff) * moveAcceleration * Time.fixedDeltaTime;
-            if(ActionInGroup(playerAction, ePlayerAction.slowsXAccVel))
+            if (ActionInGroup(playerAction, ePlayerAction.slowsXAccVel))
             {
                 acceleration *= slowAccelerationCoefficient;
             }
@@ -240,13 +241,16 @@ public class PlayerController : MonoBehaviour
 
     private void SwapCharacter()
     {
-        if (currentCharacter == eInteractionRequirement.journalist)
+        if (!ActionInGroup(playerAction, ePlayerAction.blocksSwapping))
         {
-            currentCharacter = eInteractionRequirement.porter;
-        }
-        else
-        {
-            currentCharacter = eInteractionRequirement.journalist;
+            if (currentCharacter == eInteractionRequirement.journalist)
+            {
+                currentCharacter = eInteractionRequirement.porter;
+            }
+            else
+            {
+                currentCharacter = eInteractionRequirement.journalist;
+            }
         }
     }
 
