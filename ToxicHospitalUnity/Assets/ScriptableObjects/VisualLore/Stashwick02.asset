@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick02
+  m_EditorClassIdentifier: 
+  objectName: Report 002
+  objectSprite: {fileID: 21300000, guid: cba4d8cdef3fec741abcdbcb47d24796, type: 3}
+  classification: 2
+  objectText: "HARPO \nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n20 January 2021.\r\nSubject: Cerebral Restoration Case Study
+    #5\r\n        [REDACTED]/Patient 007\r\n\n1400: \r\r\nProgress has moved at a
+    steady pace. Patient 007 has been responding to 4 of the 6 brain test criteria
+    for Cerebrum Tissue Restoration. Motor functions seem to start and stop when
+    we progress to test 5 of 6.\r\n\r\n1700:\r\nWe\u2019ve injected [REDACTED] into
+    the cerebral cortex. Patient 007, has displayed no reaction that we can observe.
+    Motor functions still exhibit the same sporadic ignitions to limb movement before
+    failing. Granular analysis of restorative cells in the central cortex of 007\u2019s
+    cerebral structure is required. \r\n\r\n2100:\r\nObservation and further study
+    yeilded minute but hopeful results. Harrington is compiling all data yielded.
+    We will quickly introduce a new variable in conjction with [REDACTED] at start
+    of business tomorrow. Fidings are forthcoming.\r\n\r\nC.M Stashwick\r\nHead of
+    Applied Research\r"

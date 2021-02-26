@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick04
+  m_EditorClassIdentifier: 
+  objectName: Report 004
+  objectSprite: {fileID: 21300000, guid: c9dbe101cac8e134d909cd6ce98ef248, type: 3}
+  classification: 2
+  objectText: "HARPO \r\nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n31 January 2021.\r\nSubject: Cerebral Restoration Case Study
+    #11\r\n        [REDACTED]/Patient 007\r\n\r\n1100:\r\nWe have hit a road block
+    with stimulating cerebral tissue growth in 007. After numerous tests upping the
+    dosage of [REDACTED] along with [REDACTED], efforts to extend motor skills of
+    the patient beyond [REDACTED] have been fruitless. Increased density and strength
+    of ionic charges have also yeilded no discernable changes. We are now proceeding
+    with Dr.Carla\u2019s Theory #3.1: [REDACTED].\r\n\r\nFindings will be forth coming.\r\n\r\n1700:\r\nPatient
+    007 seems to be displaying adverse reaction to Theory #3.1. Dr.Harrington has
+    suggested we suspend further trails of Theory #3.1\r\n\r\n1730:\r\n007\u2019s
+    prognosis has deteriorated. Frustratingly, now the patient is unresponsive to
+    [REDACTED] and [REDACTED]. I am actively monitoring Patient 007\u2019s vitals
+    for further change.\r\n\r\nPlease refer to Audio File #20 for supplimentary data
+    regarding Theory 3.1 by Dr.Carla Bishop.\r\n\r\nC.M Stashwick\r\nHead of Applied
+    Research\r\n\r\nReport 004"
