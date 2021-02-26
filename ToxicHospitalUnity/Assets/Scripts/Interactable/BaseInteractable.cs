@@ -30,6 +30,8 @@ public class BaseInteractable : MonoBehaviour
 
     [SerializeField]
     protected bool interactionStopsPlayer = true; // ~~~ interaction type enum later to feed back more info to player
+    [SerializeField]
+    protected ePlayerAction PlayerActionOnInteract = ePlayerAction.none;
 
     protected bool runningInteraction = false;
 
@@ -101,14 +103,14 @@ public class BaseInteractable : MonoBehaviour
     /// <param name="triggerType"></param>
     /// <param name="trigger"></param>
     /// <returns></returns>
-    virtual public bool TriggerInteraction(eInteractionRequirement triggerType, Transform trigger /*~~~ trigger class maybe*/)
+    virtual public ePlayerAction TriggerInteraction(eInteractionRequirement triggerType, Transform trigger /*~~~ trigger class maybe*/)
     {
         if (!CanInteract(triggerType))
         {
-            return false;
+            return ePlayerAction.none;
         }
         StartCoroutine(ManageInteraction());
-        return interactionStopsPlayer;
+        return (interactionStopsPlayer ? ePlayerAction.waiting : ePlayerAction.none);
     }
 
     /// <summary>
@@ -188,6 +190,14 @@ public class BaseInteractable : MonoBehaviour
         }
     }
 
+    virtual public bool PlayerMustWait
+    {
+        get { return runningInteraction; }
+    }
+    virtual public ePlayerAction GetPlayerAction
+    {
+        get { return PlayerActionOnInteract; }
+    }
     /// <summary>
     /// Inform objects triggered by this that it is active
     /// </summary>

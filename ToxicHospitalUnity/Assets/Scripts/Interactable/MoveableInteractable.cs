@@ -49,7 +49,7 @@ public class MoveableInteractable : BaseInteractable
     protected void GetNonTriggerCollider(Transform transform, ref Collider2D collider)
     {
         Collider2D[] colliders = transform.GetComponentsInChildren<Collider2D>();
-        foreach(Collider2D c in colliders)
+        foreach (Collider2D c in colliders)
         {
             if (!c.isTrigger)
             {
@@ -107,6 +107,25 @@ public class MoveableInteractable : BaseInteractable
             thisCollider.transform.localPosition = Vector2.zero;
             rigidbody.isKinematic = false;
             Physics2D.IgnoreCollision(playerCollider, thisCollider, false);
+        }
+    }
+
+    public override ePlayerAction GetPlayerAction
+    {
+        get
+        {
+            if(MoveableState == eMoveableState.moveByPlayer)
+            {
+                return PlayerActionOnInteract;
+            }
+            else if(MoveableState == eMoveableState.toPlayer)
+            {
+                return ePlayerAction.waiting;
+            }
+            else
+            {
+                return ePlayerAction.none;
+            }
         }
     }
 

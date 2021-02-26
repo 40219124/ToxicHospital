@@ -2,10 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Flags]
+public enum ePlayerAction
+{
+    none = 0,
+    waiting = 1 << 0,
+    interacting = 1 << 1,
+    walking = 1 << 2,
+    jumping = 1 << 3,
+    pushing = 1 << 4,
+    stopsXMovement = waiting | interacting,
+    stopsJumping = waiting | interacting | jumping | pushing,
+    rememberInteractable = waiting | interacting | pushing
+    // ~~~ stopsInteracting = inMenu???    
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    eInteractionRequirement currentCharacter = eInteractionRequirement.journalist;
+    [SerializeField]
+    eInteractionRequirement currentCharacter = eInteractionRequirement.porter;
 
     private enum eInputMovementInstruction { none, walk, jump }
     private eInputMovementInstruction currentMove = eInputMovementInstruction.none;
@@ -15,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private enum eInputActionInstruction { none, interact }
     private eInputActionInstruction currentAction = eInputActionInstruction.none;
     private eInputActionInstruction nextAction = eInputActionInstruction.none;
+
+    private ePlayerAction playerAction = ePlayerAction.none;
 
     [SerializeField]
     private float moveSpeed = 3.0f;
@@ -29,6 +47,9 @@ public class PlayerController : MonoBehaviour
     private Collider2D collider;
 
     private GroundChecker groundChecker;
+    private PlayerInteractor interactor;
+
+    private BaseInteractable currentInteraction;
 
     private Animator animator;
 
@@ -42,6 +63,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
+        interactor = GetComponentInChildren<PlayerInteractor>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -49,7 +71,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InputUpdate();
+        ActionUpdate();
         AnimatorUpdate();
+        Debug.Log($"Current interactable: {currentInteraction?.name}");
     }
 
     private void FixedUpdate()
@@ -65,19 +89,77 @@ public class PlayerController : MonoBehaviour
 
     private void InputUpdate()
     {
-        inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (currentMove != eInputMovementInstruction.jump && !inputDirection.Equals(Vector2.zero) && nextMove != eInputMovementInstruction.jump)
+        if ((playerAction & ePlayerAction.stopsXMovement) == ePlayerAction.none)
         {
-            nextMove = eInputMovementInstruction.walk;
+            inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (currentMove != eInputMovementInstruction.jump && !inputDirection.Equals(Vector2.zero) && nextMove != eInputMovementInstruction.jump)
+            {
+                nextMove = eInputMovementInstruction.walk;
+            }
         }
-        if (Input.GetButtonDown("Jump") && currentMove != eInputMovementInstruction.jump)
+        else
         {
-            nextMove = eInputMovementInstruction.jump; // ~~~ buffer this for half a second and clear if nothing happens
+            inputDirection = Vector2.zero;
+        }
+        if ((playerAction & ePlayerAction.stopsJumping) == ePlayerAction.none)
+        {
+            if (Input.GetButtonDown("Jump") && currentMove != eInputMovementInstruction.jump)
+            {
+                nextMove = eInputMovementInstruction.jump; // ~~~ buffer this for half a second and clear if nothing happens
+            }
         }
 
         if (Input.GetButtonDown("Interact"))
         {
             nextAction = eInputActionInstruction.interact; // ~~~ buffer this for half a second and clear if nothing happens
+        }
+    }
+
+    private void ActionUpdate()
+    {
+        if (nextAction == eInputActionInstruction.interact)
+        {
+            BaseInteractable interactable = currentInteraction;
+            if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
+            {
+                currentAction = nextAction;
+                playerAction = outAction;
+                if (playerAction == ePlayerAction.waiting)
+                {
+                    StartCoroutine(WaitForInteractable(interactable));
+                }
+                SaveCurrentInteractable(outAction, interactable);
+            }
+            else
+            {
+                currentAction = eInputActionInstruction.none;
+            }
+
+        }
+
+        nextAction = eInputActionInstruction.none;
+    }
+
+    private IEnumerator WaitForInteractable(BaseInteractable interactable)
+    {
+        yield return null;
+        while (interactable.PlayerMustWait)
+        {
+            yield return null;
+        }
+        playerAction = interactable.GetPlayerAction;
+        SaveCurrentInteractable(playerAction, interactable);
+    }
+
+    private void SaveCurrentInteractable(ePlayerAction action, BaseInteractable interactable)
+    {
+        if ((action & ePlayerAction.rememberInteractable) != ePlayerAction.none)
+        {
+            currentInteraction = interactable;
+        }
+        else
+        {
+            currentInteraction = null;
         }
     }
 

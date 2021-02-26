@@ -7,63 +7,61 @@ public class PlayerInteractor : MonoBehaviour
 {
     public eInteractionRequirement CurrentCharacter = eInteractionRequirement.journalist;
     private List<BaseInteractable> interactables = new List<BaseInteractable>();
+    private BaseInteractable bestInteractable;
     // ~~~ reference to player controller probably
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (VisualLoreCanvasManager.Instance.isActiveAndEnabled)
+        if (interactables.Count == 0)
         {
-            return;
+            bestInteractable = null;
         }
-        if (Input.GetButtonDown("Interact"))
+        else if (interactables.Count == 1)
         {
-            if(interactables.Count == 0)
+            bestInteractable = interactables[0];
+        }
+        else if (interactables.Count > 1)
+        {
+            float shortestSq = ((Vector2)transform.position - (Vector2)interactables[0].transform.position).sqrMagnitude;
+            int shortestI = 0;
+            for (int i = 1; i < interactables.Count; ++i)
             {
-                // Do nothing
-            }
-            else if (interactables.Count == 1)
-            {
-                TryInteract(interactables[0]);
-            }
-            else if(interactables.Count > 1)
-            {
-                float shortestSq = ((Vector2)transform.position - (Vector2)interactables[0].transform.position).sqrMagnitude;
-                int shortestI = 0;
-                for(int i = 1; i < interactables.Count; ++i)
+                float currentSq = ((Vector2)transform.position - (Vector2)interactables[i].transform.position).sqrMagnitude;
+                if (currentSq < shortestSq)
                 {
-                    float currentSq = ((Vector2)transform.position - (Vector2)interactables[i].transform.position).sqrMagnitude;
-                    if(currentSq < shortestSq)
-                    {
-                        shortestSq = currentSq;
-                        shortestI = i;
-                    }
+                    shortestSq = currentSq;
+                    shortestI = i;
                 }
-
-                TryInteract(interactables[shortestI]);
             }
+            bestInteractable = interactables[shortestI];
         }
     }
 
-    private bool TryInteract(BaseInteractable interactable)
+    public bool TryInteractInput(eInteractionRequirement currentCharacter, ref BaseInteractable outInteractable, out ePlayerAction outAction)
     {
-        if (interactable.CanInteract(CurrentCharacter))
+        if (outInteractable == null)
         {
-            PlayerInteractionResponse(interactable.TriggerInteraction(CurrentCharacter, transform));
+            outInteractable = bestInteractable;
+        }
+        return TryInteract(currentCharacter, outInteractable, out outAction);
+    }
+
+    private bool TryInteract(eInteractionRequirement currentCharacter, BaseInteractable interactable, out ePlayerAction outAction)
+    {
+        if (interactable != null && interactable.CanInteract(currentCharacter))
+        {
+            outAction = interactable.TriggerInteraction(CurrentCharacter, transform);
             return true;
         }
+        outAction = ePlayerAction.none;
         return false;
-    }
-
-    private void PlayerInteractionResponse(bool stopMoving)
-    {
-        // ~~~ respond to information from interactable (likely an enum in future)
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

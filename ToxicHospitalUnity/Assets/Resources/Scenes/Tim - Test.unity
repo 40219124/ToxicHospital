@@ -388,11 +388,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2edb263932635409440696d4428fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionRequirements: 2
+  InteractionRequirements: 3
   interactionDelay: 3
   animationFinished: 0
   animationTime: 3
   interactionStopsPlayer: 1
+  PlayerActionOnInteract: 0
   triggerType: 0
   deactivationType: 2
   deactivationDelay: 1
@@ -1303,6 +1304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 1.2099999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431810161267954943, guid: 738f888c1c8b84f4c98d0879db370820,
+        type: 3}
+      propertyPath: currentCharacter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4200891313659265610, guid: 738f888c1c8b84f4c98d0879db370820,
         type: 3}

@@ -121,6 +121,7 @@ MonoBehaviour:
   animationFinished: 0
   animationTime: 0.5
   interactionStopsPlayer: 1
+  PlayerActionOnInteract: 16
   triggerType: 0
   deactivationType: 2
   deactivationDelay: 1
@@ -274,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 2466239487343171515, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
       propertyPath: m_Name
-      value: CabinetInteractable
+      value: CabinetInteractable Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2466239487343171515, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
