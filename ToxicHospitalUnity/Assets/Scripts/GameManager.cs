@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
         }
 
         //Always have the pause menu and inventory are available on load
-        SceneManager.LoadSceneAsync("PauseScreen", LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync("InventoryScene", LoadSceneMode.Additive);
+        /*SceneManager.LoadSceneAsync("PauseScreen", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("InventoryScene", LoadSceneMode.Additive);*/
 
         Inventory = Inventory.Instance;
         AddToInventory.AddListener(Inventory.AddItem);
