@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpForce = 13.0f;
 
+    private Vector2 playerMoveVelocity = Vector2.zero;
+
     private Rigidbody2D rigidbody;
     private Collider2D collider;
 
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void AnimatorUpdate()
     {
-        animator.SetBool("FacingRight", rigidbody.velocity.x == 0 ? animator.GetBool("FacingRight") : rigidbody.velocity.x > 0);
+        animator.SetBool("FacingRight", playerMoveVelocity.x == 0 ? animator.GetBool("FacingRight") : playerMoveVelocity.x > 0);
         animator.SetInteger("MoveAction", (int)currentMove);
     }
 
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        Vector2 velocity = rigidbody.velocity;
+        Vector2 velocity = new Vector2(playerMoveVelocity.x, rigidbody.velocity.y);
         float targetXVelocity = inputDirection.x * moveSpeed;
         float velocityDiff = targetXVelocity - velocity.x;
         if (velocityDiff != 0.0f)
@@ -97,12 +99,13 @@ public class PlayerController : MonoBehaviour
                 acceleration = velocityDiff;
             }
             velocity += new Vector2(acceleration, 0.0f);
-            rigidbody.velocity = velocity;
+            playerMoveVelocity = new Vector2(velocity.x, 0.0f);
         }
+        rigidbody.velocity = velocity;
 
         if (nextMove == eInputMovementInstruction.jump && groundChecker.PlayerCanJump)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce); // ~~~ only if grounded
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
             groundChecker.PlayerJumpStart(jumpForce);
         }
 
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            currentMove = eInputMovementInstruction.walk; // ~~~ jump doesn't get a look in (might not matter)
+            currentMove = eInputMovementInstruction.walk;
         }
         nextMove = eInputMovementInstruction.none;
     }
