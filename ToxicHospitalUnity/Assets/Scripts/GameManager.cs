@@ -52,14 +52,14 @@ public class GameManager : MonoBehaviour
     {
 
         //check for pause
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Pause"))
         {
             PauseEvent.Invoke("pause");
             Debug.Log("hmm");
         }
 
         //check for inventory open/close
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetButtonDown("Inventory"))
         {
             ToggleIventoryEvent.Invoke("inventory");
         }
