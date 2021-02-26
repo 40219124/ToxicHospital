@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseEvent.Invoke("pause");
+            Debug.Log("hmm");
         }
 
         //check for inventory open/close

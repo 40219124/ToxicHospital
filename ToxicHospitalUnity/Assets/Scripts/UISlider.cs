@@ -24,11 +24,6 @@ public class UISlider : MonoBehaviour
 
     private bool showing = false;
 
-    private Vector3 offScreenUp;
-    private Vector3 offScreenDown;
-    private Vector3 offScreenLeft;
-    private Vector3 offScreenRight;
-    private Vector3 centre;
     private Vector3[] screenOffsets = new Vector3[4];
 
     private RectTransform rect;

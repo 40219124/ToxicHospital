@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 0
-  popUpName: 
+  popUpName: pause
   easeTime: 0
 --- !u!114 &85357785
 MonoBehaviour:
@@ -768,7 +768,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 46abb88339d90a84f915ebb6706e1679, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.065
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -865,7 +865,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 51bcceb59806c584a9940ecc0efc29af, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.094
   m_Pitch: 1
   Loop: 1
   Mute: 0
