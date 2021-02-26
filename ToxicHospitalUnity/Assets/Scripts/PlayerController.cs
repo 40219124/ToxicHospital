@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
         InputUpdate();
         ActionUpdate();
         AnimatorUpdate();
-        Debug.Log($"Current interactable: {currentInteraction?.name}");
     }
 
     private void FixedUpdate()
