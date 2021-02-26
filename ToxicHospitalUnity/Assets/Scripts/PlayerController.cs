@@ -12,8 +12,10 @@ public enum ePlayerAction
     jumping = 1 << 3,
     pushing = 1 << 4,
     stopsXMovement = waiting | interacting,
+    slowsXAccVel = jumping | pushing,
     stopsJumping = waiting | interacting | jumping | pushing,
-    rememberInteractable = waiting | interacting | pushing
+    rememberInteractable = waiting | interacting | pushing,
+    directionLocked = pushing | interacting | waiting
     // ~~~ stopsInteracting = inMenu???    
 }
 
@@ -37,7 +39,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 3.0f;
     [SerializeField]
+    private float slowSpeedCoefficient = 0.5f;
+    [SerializeField]
     private float moveAcceleration = 12.0f;
+    [SerializeField]
+    private float slowAccelerationCoefficient = 0.5f;
     [SerializeField]
     private float jumpForce = 13.0f;
 
@@ -82,8 +88,31 @@ public class PlayerController : MonoBehaviour
 
     private void AnimatorUpdate()
     {
-        animator.SetBool("FacingRight", playerMoveVelocity.x == 0 ? animator.GetBool("FacingRight") : playerMoveVelocity.x > 0);
+        if (ActionInGroup(playerAction, ePlayerAction.directionLocked))
+        {
+            float diff = currentInteraction.transform.position.x - transform.position.x;
+            animator.SetBool("FacingRight", diff == 0 ? animator.GetBool("FacingRight") : diff > 0);
+        }
+        else
+        {
+            animator.SetBool("FacingRight", playerMoveVelocity.x == 0 ? animator.GetBool("FacingRight") : playerMoveVelocity.x > 0);
+        }
         animator.SetInteger("MoveAction", (int)currentMove);
+        if(playerAction == ePlayerAction.pushing)
+        {
+            bool pushing = false;
+            if(Vector2.Dot(currentInteraction.transform.position - transform.position, playerMoveVelocity) > 0)
+            {
+                pushing = true;
+            }
+            animator.SetBool("Pushing", pushing);
+            animator.SetBool("Pulling", !pushing);
+        }
+        else
+        {
+            animator.SetBool("Pushing", false);
+            animator.SetBool("Pulling", false);
+        }
     }
 
     private void InputUpdate()
@@ -169,12 +198,16 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Vector2 velocity = new Vector2(playerMoveVelocity.x, rigidbody.velocity.y);
-        float targetXVelocity = inputDirection.x * moveSpeed;
+        float targetXVelocity = inputDirection.x * moveSpeed * (ActionInGroup(playerAction, ePlayerAction.slowsXAccVel) ? slowSpeedCoefficient : 1.0f);
         float velocityDiff = targetXVelocity - velocity.x;
         if (velocityDiff != 0.0f)
         {
             float acceleration = 0.0f;
-            acceleration = (velocityDiff > 0 ? 1.0f : -1.0f) * moveAcceleration * Time.fixedDeltaTime;
+            acceleration = Mathf.Sign(velocityDiff) * moveAcceleration * Time.fixedDeltaTime;
+            if(ActionInGroup(playerAction, ePlayerAction.slowsXAccVel))
+            {
+                acceleration *= slowAccelerationCoefficient;
+            }
             if (Mathf.Abs(acceleration) > Mathf.Abs(velocityDiff))
             {
                 acceleration = velocityDiff;
@@ -227,6 +260,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"Contact normal {point.normal}");
         }
         Debug.Log("End Collision Print");*/
+    }
+
+    private bool ActionInGroup(ePlayerAction action, ePlayerAction group)
+    {
+        return (action & group) != ePlayerAction.none;
     }
 
     public bool IsJumping

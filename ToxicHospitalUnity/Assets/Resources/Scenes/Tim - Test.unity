@@ -1310,6 +1310,11 @@ PrefabInstance:
       propertyPath: currentCharacter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1431810161267954943, guid: 738f888c1c8b84f4c98d0879db370820,
+        type: 3}
+      propertyPath: slowAccelerationCoefficient
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4200891313659265610, guid: 738f888c1c8b84f4c98d0879db370820,
         type: 3}
       propertyPath: m_Size.x
