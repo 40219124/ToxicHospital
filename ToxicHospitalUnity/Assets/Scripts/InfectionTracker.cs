@@ -11,15 +11,17 @@ public class InfectionTracker : MonoBehaviour
     public bool DepthBasedInfection;
     public float BloomIntensityMultiplier = 1;
     public float damageRate = 5;
+    public float maxHealth = 100;
+    public float currentHealth;
 
 
     [SerializeField] private float ratePerSecond = 0;
     [SerializeField] private Material spriteGlow;
     [SerializeField] private Color baseColour;
-    [SerializeField] float maxHealth = 100;
 
 
-    private float currentHealth;
+
+
     private bool infecting = false;
     private float depth;
     private Collider2D playerCollider;
