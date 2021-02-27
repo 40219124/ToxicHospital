@@ -72,7 +72,8 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<Collider2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         interactor = GetComponentInChildren<PlayerInteractor>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>(); 
+        SetAnimatorCharacter();
     }
 
     // Update is called once per frame
@@ -269,8 +270,13 @@ public class PlayerController : MonoBehaviour
         {
             currentCharacter = eInteractionRequirement.journalist;
         }
-        animator.SetLayerWeight(animator.GetLayerIndex("Carson"), currentCharacter == eInteractionRequirement.journalist ? 1.0f : 0.0f);
+        SetAnimatorCharacter();
         playerAction = ePlayerAction.none;
+    }
+
+    private void SetAnimatorCharacter()
+    {
+        animator.SetLayerWeight(animator.GetLayerIndex("Carson"), currentCharacter == eInteractionRequirement.journalist ? 1.0f : 0.0f);
     }
 
     public void FanimSwapCharacter()
