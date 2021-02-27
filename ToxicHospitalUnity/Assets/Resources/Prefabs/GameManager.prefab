@@ -45,5 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEST:
   - {fileID: 11400000, guid: 352990680d8dd4f4a97d268243e3603d, type: 2}
-  - {fileID: 11400000, guid: 08cd25c68a782a147b24f1103885076a, type: 2}
+  - {fileID: 11400000, guid: f311e0ba5c1d9a14494f558669743410, type: 2}
+  - {fileID: 11400000, guid: 6ec78ae83e70c74458c32393c31f4225, type: 2}
+  - {fileID: 11400000, guid: 42be75b74fe643a468b826158258b8eb, type: 2}
+  - {fileID: 11400000, guid: 94b59a5e0025a8a4f938b92eeb04bd5e, type: 2}
   - {fileID: 11400000, guid: 8beb2e4ce95f4ef4cb655ab43e113d43, type: 2}
