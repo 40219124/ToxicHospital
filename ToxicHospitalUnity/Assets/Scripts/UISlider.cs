@@ -18,17 +18,19 @@ public class UISlider : MonoBehaviour
 
     public HideDirection Direction;
 
-    [SerializeField] private string popUpName;
-    [SerializeField] private float easeTime;
+    [SerializeField] protected string popUpName;
+    [SerializeField] protected float easeTime;
 
 
-    private bool showing = false;
+    public static bool anyShowing = false;
+    protected bool individualShowing = false;
 
-    private Vector3[] screenOffsets = new Vector3[4];
+    protected Vector3[] screenOffsets = new Vector3[4];
 
-    private RectTransform rect;
-    private Vector3 showingPosition;
-    private Vector3 hiddenPosition;
+    protected RectTransform rect;
+    protected Vector3 showingPosition;
+    protected Vector3 hiddenPosition;
+    protected static bool uiLock = false;
 
 
     private void Start()
@@ -51,37 +53,58 @@ public class UISlider : MonoBehaviour
     }
 
 
-    public void Toggle(string identifier)
+    public virtual void Toggle(string identifier)
     {
+        //if event intended for this individual
         if (identifier == popUpName)
         {
-            if (showing)
-            {
-                Hide();
-            }
-            else
+            //if this individual isn't showing and the UI isn't locked
+            if (!individualShowing)
             {
                 Show();
             }
+            else
+            {
+                //hide
+                Hide();
+            }
 
-            showing = !showing;
         }
     }
 
 
 
-    public void Show()
+    public virtual void Show()
     {
-        LeanTween.cancel(gameObject);
-        LeanTween.move(rect, showingPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
-        //Debug.Log("Show " + showingPosition);
+        if (!UISlider.uiLock)
+        {
+            //show this individual
+            LeanTween.cancel(gameObject);
+            LeanTween.move(rect, showingPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
+            //Debug.Log("Show " + showingPosition);}
+
+            //and lock the UI until it is hidden
+            individualShowing = true;
+            UISlider.uiLock = true;
+        }
+
+        //do nothing with UI Lock in place
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
-        LeanTween.cancel(gameObject);
-        LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
-        //Debug.Log("Hide " + hiddenPosition);
-    }
+        if (UISlider.uiLock)
+        {
+            //hide this individual
+            LeanTween.cancel(gameObject);
+            LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
+            //Debug.Log("Hide " + hiddenPosition);
 
+            //free the UI lock
+            individualShowing = false;
+            UISlider.uiLock = false;
+        }
+
+        //do nothing with UI Lock in place
+    }
 }

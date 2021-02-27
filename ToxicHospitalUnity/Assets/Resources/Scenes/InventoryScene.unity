@@ -260,7 +260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 178097568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ecd1548a39c1c4dab2db360fbe716c, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa155d16956274f9505aff38423f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 1
@@ -663,9 +663,9 @@ GameObject:
   - component: {fileID: 410448471}
   - component: {fileID: 410448473}
   - component: {fileID: 410448472}
-  - component: {fileID: 410448474}
   - component: {fileID: 410448475}
   - component: {fileID: 410448476}
+  - component: {fileID: 410448474}
   m_Layer: 5
   m_Name: RecordingPlayerPanel
   m_TagString: Untagged
@@ -740,12 +740,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 410448470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ecd1548a39c1c4dab2db360fbe716c, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa155d16956274f9505aff38423f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 3
   popUpName: 
-  easeTime: 1
+  easeTime: 0
 --- !u!114 &410448475
 MonoBehaviour:
   m_ObjectHideFlags: 0
