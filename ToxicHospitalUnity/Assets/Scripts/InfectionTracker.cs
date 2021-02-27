@@ -113,6 +113,11 @@ public class InfectionTracker : MonoBehaviour
         }
     }
 
+    public float GetHealthPercentage()
+    {
+        return currentHealth / maxHealth;
+    }
+
 
     //OnTriggerStay used so that the rate will keep being added if entering another nearby zone before leaving current one
     void OnTriggerStay2D(Collider2D other)
