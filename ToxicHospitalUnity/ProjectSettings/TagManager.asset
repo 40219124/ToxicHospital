@@ -8,6 +8,7 @@ TagManager:
   - InvLayouts
   - Ground
   - InvTabs
+  - CamBox
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 812990996}
   m_Layer: 0
   m_Name: BottomFloor
-  m_TagString: Untagged
+  m_TagString: CamBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 1026248397}
   m_Layer: 0
   m_Name: TopFloor
-  m_TagString: Untagged
+  m_TagString: CamBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1077010451}
   m_Layer: 0
   m_Name: MiddleFloor
-  m_TagString: Untagged
+  m_TagString: CamBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

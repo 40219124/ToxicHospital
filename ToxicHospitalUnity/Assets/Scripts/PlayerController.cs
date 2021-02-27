@@ -26,6 +26,9 @@ public enum ePlayerAction
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController instance;
+    public static PlayerController Instance { get { return instance; } }
+
     [SerializeField]
     eInteractionRequirement currentCharacter = eInteractionRequirement.porter;
 
@@ -67,6 +70,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
