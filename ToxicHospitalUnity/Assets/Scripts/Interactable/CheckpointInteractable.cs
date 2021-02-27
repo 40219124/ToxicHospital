@@ -25,6 +25,7 @@ public class CheckpointInteractable : BaseInteractable
 
     protected override void DoInteractionAction()
     {
+        RestorePlayerHealthEffects();
 
         SavePayerData();
         SaveInventoryData();
@@ -41,7 +42,7 @@ public class CheckpointInteractable : BaseInteractable
         // Debug.Log(string.Format("Interactable activity statuses list, element 0: {0}", CheckpointStatus.ActivyStatuses[0]));
     }
 
-    private void RestorePlayerHealthEffects(
+    private void RestorePlayerHealthEffects()
     {
         InfectionTracker healthEffects = player.gameObject.GetComponent<InfectionTracker>();
         healthEffects.InfectionProgress = 0;
