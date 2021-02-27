@@ -32,6 +32,7 @@ public class Inventory
 
     public void AddItem(LoreItem item)
     {
+        Debug.LogWarning("Remove this testing code when finished.");
         int index = -1;
 
         if (item.classification == LoreType.AudioLog)
@@ -74,13 +75,10 @@ public class Inventory
         }
 
         Transform layout = layouts[(int)item.classification];
-        Debug.Log(layout.name);
-
 
         var prefab = Resources.Load<GameObject>("Prefabs/InventoryItemUI");
         GameObject cell = GameObject.Instantiate(prefab);
         cell.gameObject.transform.SetParent(layout.transform);
-        Debug.Log(cell.name);
 
         cell.gameObject.GetComponent<InspectItem>().Initialise(item, inventoryIndex);
 

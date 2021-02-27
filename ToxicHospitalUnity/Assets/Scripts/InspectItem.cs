@@ -46,7 +46,6 @@ public class InspectItem : MonoBehaviour
 
     void Inspect()
     {
-        Debug.Log("Inspecting a " + type);
 
         if (type != LoreType.AudioLog)
         {

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static LoreItemEvent AddToInventory;
 
 
+
     [HideInInspector]
     public Inventory Inventory;
 
@@ -55,7 +56,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             PauseEvent.Invoke("pause");
-            Debug.Log("hmm");
         }
 
         //check for inventory open/close
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
             foreach (LoreItem t in TEST)
             {
                 AddToInventory.Invoke(t);
+                Debug.LogWarning("Remove this testing code when finished.");
             }
         }
     }
