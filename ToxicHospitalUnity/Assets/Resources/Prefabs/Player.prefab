@@ -561,10 +561,9 @@ MonoBehaviour:
   BloomIntensityMultiplier: 1
   damageRate: 5
   ratePerSecond: 0
-  spriteGlow: {fileID: 0}
+  spriteGlow: {fileID: 2100000, guid: 60437b30acc18dd4cbf7e030e33c90e6, type: 2}
   baseColour: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
   maxHealth: 100
-  currentHealth: 100
 --- !u!1001 &285204196297564477
 PrefabInstance:
   m_ObjectHideFlags: 0
