@@ -878,13 +878,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b8106d0ea4aeb49a8297008b69691a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionRequirements: 0
+  InteractionRequirements: 3
   interactionDelay: 3
   animationFinished: 0
   animationTime: 0.5
   interactionStopsPlayer: 1
   PlayerActionOnInteract: 0
-  triggerType: 1
+  triggerType: 0
   deactivationType: 2
   deactivationDelay: 1
   triggerTargets: []
