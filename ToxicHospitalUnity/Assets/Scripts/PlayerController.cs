@@ -12,8 +12,9 @@ public enum ePlayerAction
     jumping = 1 << 3,
     pushing = 1 << 4,
     swapping = 1 << 5,
+    isJustMovement = none | walking | jumping,
     stopsXMovement = waiting | interacting | swapping,
-    slowsXAccVel = jumping | pushing,
+    slowsXAccVel = pushing,
     blocksJumping = waiting | interacting | jumping | pushing | swapping,
     rememberInteractable = waiting | interacting | pushing,
     directionLocked = pushing | interacting | waiting,
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private GroundChecker groundChecker;
     private PlayerInteractor interactor;
+    private PlayerHitboxChooser hitboxChooser;
+    private PlayerSwapToMillieCheck millieSwapChecker;
 
     private BaseInteractable currentInteraction;
 
@@ -72,7 +75,9 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<Collider2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         interactor = GetComponentInChildren<PlayerInteractor>();
-        animator = GetComponentInChildren<Animator>(); 
+        hitboxChooser = GetComponentInChildren<PlayerHitboxChooser>();
+        millieSwapChecker = GetComponentInChildren<PlayerSwapToMillieCheck>();
+        animator = GetComponentInChildren<Animator>();
         SetAnimatorCharacter();
     }
 
@@ -82,6 +87,7 @@ public class PlayerController : MonoBehaviour
         InputUpdate();
         ActionUpdate();
         AnimatorUpdate();
+        hitboxChooser.ChooseHitbox(currentCharacter, playerAction);
     }
 
     private void FixedUpdate()
@@ -237,21 +243,40 @@ public class PlayerController : MonoBehaviour
         if (velocity.Equals(Vector2.zero) && !groundChecker.PlayerIsJumping)
         {
             currentMove = eInputMovementInstruction.none;
+            SetPlayerAction(ePlayerAction.none);
         }
         else if (groundChecker.PlayerIsJumping)
         {
             currentMove = eInputMovementInstruction.jump;
+            SetPlayerAction(ePlayerAction.jumping);
         }
         else
         {
             currentMove = eInputMovementInstruction.walk;
+            SetPlayerAction(ePlayerAction.walking);
         }
         nextMove = eInputMovementInstruction.none;
     }
 
+    private void SetPlayerAction(ePlayerAction action)
+    {
+        if(ActionInGroup(action, ePlayerAction.isJustMovement) || action == ePlayerAction.none)
+        {
+            if (ActionInGroup(playerAction, ePlayerAction.isJustMovement) || playerAction == ePlayerAction.none)
+            {
+                playerAction = action;
+            }
+        }
+        else
+        {
+            playerAction = action;
+        }
+    }
+
     private bool StartSwapCharacter()
     {
-        bool outBool = !ActionInGroup(playerAction, ePlayerAction.blocksSwapping);
+        bool outBool = !ActionInGroup(playerAction, ePlayerAction.blocksSwapping) && 
+            !(currentCharacter == eInteractionRequirement.journalist && !millieSwapChecker.CanSwapToMillie);
         if (outBool)
         {
             playerAction = ePlayerAction.swapping;

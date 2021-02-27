@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VisualLoreCanvasManager : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class VisualLoreCanvasManager : MonoBehaviour
     [SerializeField]
     private Image generalBackdrop;
     [SerializeField]
-    private Image visualLoreImage;
+    private SpriteRenderer visualLoreImage;
     [SerializeField]
     private Image textBackdrop;
     [SerializeField]
-    private Text visualLoreText;
+    private TextMeshProUGUI visualLoreText;
 
     private bool showingText = false;
 
