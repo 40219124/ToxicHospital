@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class CheckpointInteractable : BaseInteractable
 {
+
+    protected override void Start()
+    {
+        base.Start();
+
+        //set up a referecne to every movableInteractable in the scene before they get deactivated
+        if (!CheckpointStatus.Initialised)
+        {
+            CheckpointStatus.AllInteractables = GetComponents<BaseInteractable>();
+            CheckpointStatus.Initialised = true;
+        }
+    }
     protected override void DoInteractionAction()
     {
         SavePayerData();
@@ -30,6 +42,16 @@ public class CheckpointInteractable : BaseInteractable
 
     private void SaveInteractableData()
     {
+        //clear lists of their previous content from otehr checkpoints
+        CheckpointStatus.AllInteractablesTransforms.Clear();
+        CheckpointStatus.ActivyStatuses.Clear();
+
+        //save their transforms and whether or not they are active
+        foreach (BaseInteractable interact in CheckpointStatus.AllInteractables)
+        {
+            CheckpointStatus.AllInteractablesTransforms.Add(interact.transform);
+            CheckpointStatus.ActivyStatuses.Add(interact.isActiveAndEnabled);
+        }
 
     }
 
