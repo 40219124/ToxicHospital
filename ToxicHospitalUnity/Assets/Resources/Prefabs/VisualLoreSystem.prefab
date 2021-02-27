@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2970763105400457101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034090749172700388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 02591f30b35ba6947abae24868d62b99, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!1 &2970763103370062013
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,12 +389,6 @@ PrefabInstance:
 --- !u!224 &2795740337072796718 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1150162056696507073, guid: 527a4d703e41e5645981ca3f5ab599bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 2970763104925998831}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2034090749172700388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3819280700279589387, guid: 527a4d703e41e5645981ca3f5ab599bf,
     type: 3}
   m_PrefabInstance: {fileID: 2970763104925998831}
   m_PrefabAsset: {fileID: 0}
