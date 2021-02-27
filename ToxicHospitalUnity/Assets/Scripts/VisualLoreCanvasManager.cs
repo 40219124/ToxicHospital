@@ -11,7 +11,7 @@ public class VisualLoreCanvasManager : MonoBehaviour
     [SerializeField]
     private Image generalBackdrop;
     [SerializeField]
-    private Image visualLoreImage;
+    private SpriteRenderer visualLoreImage;
     [SerializeField]
     private Image textBackdrop;
     [SerializeField]
