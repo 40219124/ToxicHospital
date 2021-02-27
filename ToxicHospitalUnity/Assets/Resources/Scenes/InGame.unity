@@ -872,6 +872,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.7699995
       objectReference: {fileID: 0}
+    - target: {fileID: 3444903049487019219, guid: 23bd7d5e55f14e642aab39158e1c4408,
+        type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3444903049502585800, guid: 23bd7d5e55f14e642aab39158e1c4408,
         type: 3}
       propertyPath: m_BoundingShape2D
