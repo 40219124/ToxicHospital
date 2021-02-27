@@ -5,29 +5,53 @@ using UnityEngine;
 public class CheckpointInteractable : BaseInteractable
 {
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
-
         //set up a referecne to every movableInteractable in the scene before they get deactivated
         if (!CheckpointStatus.Initialised)
         {
-            CheckpointStatus.AllInteractables = GetComponents<BaseInteractable>();
+            CheckpointStatus.AllInteractables = GameObject.FindObjectsOfType<BaseInteractable>();
             CheckpointStatus.Initialised = true;
         }
     }
+
+
+    // protected override void Start()
+    // {
+    //     base.Start();
+
+    //     //set up a referecne to every movableInteractable in the scene before they get deactivated
+    //     if (!CheckpointStatus.Initialised)
+    //     {
+    //         CheckpointStatus.AllInteractables = GameObject.FindObjectsOfType<BaseInteractable>();
+    //         CheckpointStatus.Initialised = true;
+    //     }
+    // }
+
+
     protected override void DoInteractionAction()
     {
         SavePayerData();
         SaveInventoryData();
         SaveInteractableData();
         SaveEnemyData();
+
+        Debug.Log("Checkpoint activated");
+        Debug.Log(string.Format("Player Infection: {0}", CheckpointStatus.PlayerInfectionLevel));
+        Debug.Log(string.Format("Player Health(%): {0}", CheckpointStatus.PlayerHealthPercentage));
+        Debug.Log(string.Format("Player transform.position: {0}", CheckpointStatus.PlayerTransform.position));
+        Debug.Log(string.Format("Inventory Audio Logs: {0}", CheckpointStatus.Recordings));
+        Debug.Log(string.Format("Player Infection: {0}", CheckpointStatus.PlayerInfectionLevel));
+        Debug.Log(string.Format("Interactable list, element 0, name: {0}", CheckpointStatus.AllInteractables[0].name));
+        Debug.Log(string.Format("Interactable transfroms list, element 0, position", CheckpointStatus.AllInteractablesTransforms));
+        Debug.Log(string.Format("Interactable activity statuses list: {0}", CheckpointStatus.ActivyStatuses));
     }
 
     private void SavePayerData()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         InfectionTracker healthEffects = player.GetComponent<InfectionTracker>();
+
         CheckpointStatus.PlayerInfectionLevel = healthEffects.InfectionProgress;
         CheckpointStatus.PlayerHealthPercentage = healthEffects.GetHealthPercentage();
         CheckpointStatus.PlayerTransform = player.transform;
