@@ -12,7 +12,8 @@ public static class CheckpointStatus
     public static float PlayerHealthPercentage;
 
     //store the loaction, scale, and rotation at time of checkpoint
-    public static Transform PlayerTransform;
+    public static Vector3 PlayerPosition = new Vector3();
+    public static Quaternion PlayerRotation = new Quaternion();
 
 
     //store inventory contents
