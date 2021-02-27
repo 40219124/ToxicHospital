@@ -11,12 +11,13 @@ public enum ePlayerAction
     walking = 1 << 2,
     jumping = 1 << 3,
     pushing = 1 << 4,
-    stopsXMovement = waiting | interacting,
+    swapping = 1 << 5,
+    stopsXMovement = waiting | interacting | swapping,
     slowsXAccVel = jumping | pushing,
-    blocksJumping = waiting | interacting | jumping | pushing,
+    blocksJumping = waiting | interacting | jumping | pushing | swapping,
     rememberInteractable = waiting | interacting | pushing,
     directionLocked = pushing | interacting | waiting,
-    blocksSwapping = waiting | interacting | jumping | pushing
+    blocksSwapping = waiting | interacting | jumping | pushing | swapping
     // ~~~ stopsInteracting = inMenu???    
 }
 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private eInputMovementInstruction nextMove = eInputMovementInstruction.none;
     private Vector2 inputDirection;
 
-    private enum eInputActionInstruction { none, interact }
+    private enum eInputActionInstruction { none, interact, swap }
     private eInputActionInstruction currentAction = eInputActionInstruction.none;
     private eInputActionInstruction nextAction = eInputActionInstruction.none;
 
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private void Awake()
-    { 
+    {
     }
 
     // Start is called before the first frame update
@@ -142,6 +143,10 @@ public class PlayerController : MonoBehaviour
         {
             nextAction = eInputActionInstruction.interact; // ~~~ buffer this for half a second and clear if nothing happens
         }
+        else if (Input.GetButtonDown("SwapChar"))
+        {
+            nextAction = eInputActionInstruction.swap;
+        }
     }
 
     private void ActionUpdate()
@@ -164,6 +169,10 @@ public class PlayerController : MonoBehaviour
                 currentAction = eInputActionInstruction.none;
             }
 
+        }
+        else if (nextAction == eInputActionInstruction.swap)
+        {
+            StartSwapCharacter();
         }
 
         nextAction = eInputActionInstruction.none;
@@ -239,19 +248,34 @@ public class PlayerController : MonoBehaviour
         nextMove = eInputMovementInstruction.none;
     }
 
-    private void SwapCharacter()
+    private bool StartSwapCharacter()
     {
-        if (!ActionInGroup(playerAction, ePlayerAction.blocksSwapping))
+        bool outBool = !ActionInGroup(playerAction, ePlayerAction.blocksSwapping);
+        if (outBool)
         {
-            if (currentCharacter == eInteractionRequirement.journalist)
-            {
-                currentCharacter = eInteractionRequirement.porter;
-            }
-            else
-            {
-                currentCharacter = eInteractionRequirement.journalist;
-            }
+            playerAction = ePlayerAction.swapping;
+            animator.SetTrigger("SwapChar");
         }
+        return outBool;
+    }
+
+    private void FinaliseSwapCharacter()
+    {
+        if (currentCharacter == eInteractionRequirement.journalist)
+        {
+            currentCharacter = eInteractionRequirement.porter;
+        }
+        else
+        {
+            currentCharacter = eInteractionRequirement.journalist;
+        }
+        animator.SetLayerWeight(animator.GetLayerIndex("Carson"), currentCharacter == eInteractionRequirement.journalist ? 1.0f : 0.0f);
+        playerAction = ePlayerAction.none;
+    }
+
+    public void FanimSwapCharacter()
+    {
+        FinaliseSwapCharacter();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
