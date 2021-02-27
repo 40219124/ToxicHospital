@@ -19,12 +19,17 @@ public class InfectionTracker : MonoBehaviour
     [SerializeField] float maxHealth = 100;
 
 
-    public float currentHealth = 100;
+    private float currentHealth;
     private bool infecting = false;
     private float depth;
     private Collider2D playerCollider;
     private float intensity;
     private float infectionPercent;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     private void Start()
     {
