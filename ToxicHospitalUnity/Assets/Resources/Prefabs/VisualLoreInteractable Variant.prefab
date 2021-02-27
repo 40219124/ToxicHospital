@@ -15,14 +15,14 @@ MonoBehaviour:
   InteractionRequirements: 3
   interactionDelay: 3
   animationFinished: 0
-  animationTime: 3
+  animationTime: 0
   interactionStopsPlayer: 1
-  PlayerActionOnInteract: 0
+  PlayerActionOnInteract: 2
   triggerType: 0
   deactivationType: 2
   deactivationDelay: 1
   triggerTargets: []
-  visualLore: {fileID: 11400000, guid: 8beb2e4ce95f4ef4cb655ab43e113d43, type: 2}
+  visualLore: {fileID: 11400000, guid: f311e0ba5c1d9a14494f558669743410, type: 2}
 --- !u!1001 &8650173857342938157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 2466239487343171515, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}
       propertyPath: m_Name
-      value: VisualLoreInteractable
+      value: VisualLoreInteractable Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2466239487930689576, guid: 3e701fb7aa678f44d9251624496ae207,
         type: 3}

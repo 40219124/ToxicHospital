@@ -16,6 +16,7 @@ public enum ePlayerAction
     stopsXMovement = waiting | interacting | swapping,
     slowsXAccVel = pushing,
     blocksJumping = waiting | interacting | jumping | pushing | swapping,
+    blocksInteracting = interacting,
     rememberInteractable = waiting | interacting | pushing,
     directionLocked = pushing | interacting | waiting,
     blocksSwapping = waiting | interacting | jumping | pushing | swapping
@@ -88,6 +89,14 @@ public class PlayerController : MonoBehaviour
         ActionUpdate();
         AnimatorUpdate();
         hitboxChooser.ChooseHitbox(currentCharacter, playerAction);
+        if(playerAction == ePlayerAction.interacting)
+        {
+            if (!VisualLoreCanvasManager.Instance.gameObject.activeInHierarchy)
+            {
+                playerAction = ePlayerAction.none;
+                currentInteraction = null;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -160,22 +169,24 @@ public class PlayerController : MonoBehaviour
     {
         if (nextAction == eInputActionInstruction.interact)
         {
-            BaseInteractable interactable = currentInteraction;
-            if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
+            if (!ActionInGroup(playerAction, ePlayerAction.blocksInteracting))
             {
-                currentAction = nextAction;
-                playerAction = outAction;
-                if (playerAction == ePlayerAction.waiting)
+                BaseInteractable interactable = currentInteraction;
+                if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
                 {
-                    StartCoroutine(WaitForInteractable(interactable));
+                    currentAction = nextAction;
+                    playerAction = outAction;
+                    if (playerAction == ePlayerAction.waiting)
+                    {
+                        StartCoroutine(WaitForInteractable(interactable));
+                    }
+                    SaveCurrentInteractable(outAction, interactable);
                 }
-                SaveCurrentInteractable(outAction, interactable);
+                else
+                {
+                    currentAction = eInputActionInstruction.none;
+                }
             }
-            else
-            {
-                currentAction = eInputActionInstruction.none;
-            }
-
         }
         else if (nextAction == eInputActionInstruction.swap)
         {
