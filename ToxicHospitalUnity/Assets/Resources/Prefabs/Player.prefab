@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 1431810161267954943}
   - component: {fileID: 1431810161267954941}
   - component: {fileID: 1431810161267954942}
+  - component: {fileID: 3569023202448374235}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -204,6 +205,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67, y: 2.4200003}
   m_EdgeRadius: 0
+--- !u!114 &3569023202448374235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431810161267954930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4b630bb90fd3444baa8b101c84c29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InfectionProgress: 0
+  MaxInfection: 100
+  RecoveryRate: 0
+  DepthBasedInfection: 0
+  BloomIntensityMultiplier: 1
+  damageRate: 5
+  ratePerSecond: 0
+  spriteGlow: {fileID: 0}
+  baseColour: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+  maxHealth: 100
 --- !u!1001 &285204196297564477
 PrefabInstance:
   m_ObjectHideFlags: 0
