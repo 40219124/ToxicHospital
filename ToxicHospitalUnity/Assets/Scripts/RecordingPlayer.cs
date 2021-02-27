@@ -10,7 +10,7 @@ public class RecordingPlayer : MonoBehaviour
     private AudioSource source;
     private TextMeshProUGUI nowPlaying;
 
-    private UISlider popup;
+    private UISliderOverride popup;
     private AudioLore recording;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class RecordingPlayer : MonoBehaviour
             instance = this;
         }
 
-        popup = gameObject.GetComponent<UISlider>();
+        popup = gameObject.GetComponent<UISliderOverride>();
         source = gameObject.GetComponent<AudioSource>();
         nowPlaying = gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
