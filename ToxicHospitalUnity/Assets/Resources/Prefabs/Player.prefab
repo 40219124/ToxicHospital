@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 2.3}
+  m_Size: {x: 0.3, y: 2.36}
   m_EdgeRadius: 0
 --- !u!114 &1410371448
 MonoBehaviour:
@@ -560,10 +560,11 @@ MonoBehaviour:
   DepthBasedInfection: 0
   BloomIntensityMultiplier: 1
   damageRate: 5
+  maxHealth: 100
+  currentHealth: 0
   ratePerSecond: 0
   spriteGlow: {fileID: 2100000, guid: 60437b30acc18dd4cbf7e030e33c90e6, type: 2}
   baseColour: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
-  maxHealth: 100
 --- !u!1001 &285204196297564477
 PrefabInstance:
   m_ObjectHideFlags: 0
