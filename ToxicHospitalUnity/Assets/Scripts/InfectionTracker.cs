@@ -19,7 +19,7 @@ public class InfectionTracker : MonoBehaviour
     [SerializeField] float maxHealth = 100;
 
 
-    private float currentHealth = 100;
+    public float currentHealth = 100;
     private bool infecting = false;
     private float depth;
     private Collider2D playerCollider;
@@ -109,7 +109,8 @@ public class InfectionTracker : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CheckpointInteractable.LoadCheckpoint(this);
         }
     }
 
