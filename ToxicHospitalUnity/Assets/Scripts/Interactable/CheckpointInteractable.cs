@@ -6,21 +6,34 @@ public class CheckpointInteractable : BaseInteractable
 {
     protected override void DoInteractionAction()
     {
+        SavePayerData();
+        SaveInventoryData();
+        SaveInteractableData();
+        SaveEnemyData();
+    }
 
-    private void CheckpointPayerData()
+    private void SavePayerData()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        InfectionTracker healthEffects = player.GetComponent<InfectionTracker>();
+        CheckpointStatus.PlayerInfectionLevel = healthEffects.InfectionProgress;
+        CheckpointStatus.PlayerHealthPercentage = healthEffects.GetHealthPercentage();
+        CheckpointStatus.PlayerTransform = player.transform;
+    }
 
-    private void CheckpointInventoryData()
+    private void SaveInventoryData()
+    {
+        CheckpointStatus.Recordings = Inventory.Instance.Recordings;
+        CheckpointStatus.Letters = Inventory.Instance.Letters;
+        CheckpointStatus.Reports = Inventory.Instance.Reports;
+    }
+
+    private void SaveInteractableData()
     {
 
     }
 
-    private void CheckpointInteractableData()
-    {
-
-    }
-
-    private void CheckpointEnemyData()
+    private void SaveEnemyData()
     {
         //TODO enemies don't exist yet
     }

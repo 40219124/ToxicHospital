@@ -15,7 +15,7 @@ public static class CheckpointStatus
 
 
     //store the loaction, scale, and rotation at time of checkpoint
-    public static Transform Transform;
+    public static Transform PlayerTransform;
 
     // store transforms of all Movable interactables and enemies currently in the scene
     public static List<Transform> MoveableInteractableTransforms = new List<Transform>();
