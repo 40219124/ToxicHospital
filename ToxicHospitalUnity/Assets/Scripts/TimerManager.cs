@@ -94,6 +94,10 @@ public class TimerManager : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            this.enabled = false;
+        }
     }
 
     public Timer CreateNewTimer(float duration, bool startRunning = false)
