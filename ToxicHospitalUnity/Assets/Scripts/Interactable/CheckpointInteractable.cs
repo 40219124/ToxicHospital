@@ -127,13 +127,8 @@ public class CheckpointInteractable : BaseInteractable
             CheckpointStatus.AllInteractables[i].transform.rotation = CheckpointStatus.AllInteractablesTransforms[i].rotation;
             CheckpointStatus.AllInteractables[i].gameObject.SetActive(CheckpointStatus.ActivyStatuses[i]);
 
-<<<<<<< HEAD
-            Debug.Log("Loaded Interactibles");
+            Logger.Log("Loaded Interactibles");
         }
-
-=======
-            Logger.Log("Loaded");
->>>>>>> Dev
 
         //load all enemyies' transforms
         for (int i = 0; i < CheckpointStatus.AllEnemies.Length; i++)

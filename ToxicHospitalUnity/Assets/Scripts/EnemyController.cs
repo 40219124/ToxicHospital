@@ -197,15 +197,9 @@ public class EnemyController : MonoBehaviour
         //TODO or DetectedWall
         if (DetectEdges() || DetectWalls())
         {
-<<<<<<< HEAD
-            Debug.Log(DetectEdges() + ", " + DetectWalls());
+            Logger.Log(DetectEdges() + ", " + DetectWalls());
             FacingRight = !FacingRight;
             Move(currentSpeed, FacingRight);
-=======
-            Logger.Log(DetectEdges() + ", " + DetectWalls());
-            facingRight = !facingRight;
-            Move(currentSpeed, facingRight);
->>>>>>> Dev
 
         }
 
@@ -239,13 +233,8 @@ public class EnemyController : MonoBehaviour
         else if (EnemyState == eEnemyState.chasing)
         {
             currentSpeed = chaseSpeed;
-<<<<<<< HEAD
-            Debug.Log("chasing");
-            Move(currentSpeed, FacingRight);
-=======
             Logger.Log("chasing");
-            Move(currentSpeed, facingRight);
->>>>>>> Dev
+            Move(currentSpeed, FacingRight);
         }
         else
         {
