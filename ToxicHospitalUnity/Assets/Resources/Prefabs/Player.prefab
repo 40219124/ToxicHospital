@@ -551,7 +551,7 @@ MonoBehaviour:
   slowSpeedCoefficient: 0.5
   moveAcceleration: 12
   slowAccelerationCoefficient: 0.25
-  jumpForce: 13
+  jumpForce: 12
 --- !u!50 &1431810161267954941
 Rigidbody2D:
   serializedVersion: 4
@@ -622,6 +622,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerObjectInteractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214907817373918205, guid: b8277ab33163f30488483f1e1da4ff15,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5742852294238081554, guid: b8277ab33163f30488483f1e1da4ff15,
         type: 3}

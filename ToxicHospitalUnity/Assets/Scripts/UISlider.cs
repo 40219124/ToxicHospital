@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class UISlider : MonoBehaviour
 {
-
+    protected Selectable lastSelected;
 
     public enum HideDirection
     {
@@ -50,6 +50,8 @@ public class UISlider : MonoBehaviour
         hiddenPosition = showingPosition + screenOffsets[(int)Direction];
 
         rect.localPosition = hiddenPosition;
+
+        lastSelected = GetComponentInChildren<Selectable>();
     }
 
 
@@ -72,6 +74,18 @@ public class UISlider : MonoBehaviour
         }
     }
 
+    protected virtual void SelectSelectable()
+    {
+        lastSelected.Select();
+    }
+
+    protected virtual void DeselectSelectable()
+    {
+        //Selectable current = lastSelected;
+        Selectable current = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        EventSystem.current.SetSelectedGameObject(null);
+        lastSelected = current;
+    }
 
 
     public virtual void Show()
@@ -86,6 +100,8 @@ public class UISlider : MonoBehaviour
             //and lock the UI until it is hidden
             individualShowing = true;
             UISlider.uiLock = true;
+
+            SelectSelectable();
         }
 
         //do nothing with UI Lock in place
@@ -103,6 +119,8 @@ public class UISlider : MonoBehaviour
             //free the UI lock
             individualShowing = false;
             UISlider.uiLock = false;
+
+            DeselectSelectable();
         }
 
         //do nothing with UI Lock in place

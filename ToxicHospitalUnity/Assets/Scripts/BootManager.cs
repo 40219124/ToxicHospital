@@ -58,6 +58,7 @@ public class BootManager : MonoBehaviour
 
     void ClearOpenScenes()
     {
+        AudioListenerController.Instance.GoToBootScene();
         for (int i = openScenes.Count - 1; i >= 0; --i)
         {
             SceneManager.UnloadSceneAsync(openScenes[i]);

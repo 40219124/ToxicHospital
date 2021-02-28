@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812990997}
   - component: {fileID: 812990996}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BottomFloor
   m_TagString: CamBox
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026248396}
   - component: {fileID: 1026248397}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TopFloor
   m_TagString: CamBox
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077010450}
   - component: {fileID: 1077010451}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MiddleFloor
   m_TagString: CamBox
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   - {x: -49.999996, y: -0.2, z: 0}
   m_ShapePathHash: -1519495639
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1622
+  m_InstanceId: 44798
 --- !u!1 &2781627835344101929
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ MonoBehaviour:
   - {x: -49.999996, y: -0.2, z: 0}
   m_ShapePathHash: -1519495639
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1624
+  m_InstanceId: 44800
 --- !u!1 &2885149905846714271
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   - {x: -2, y: 18, z: 0}
   m_ShapePathHash: 1805289163
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1628
+  m_InstanceId: 44828
 --- !u!1 &3034968149038374264
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +600,7 @@ MonoBehaviour:
   - {x: -49.999996, y: -0.2, z: 0}
   m_ShapePathHash: -1519495639
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1620
+  m_InstanceId: 44796
 --- !u!1 &3679362936403894993
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   - {x: -49.999996, y: -0.19, z: 0}
   m_ShapePathHash: 1015617257
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1626
+  m_InstanceId: 44826
 --- !u!1 &9164367383800634519
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,4 +883,4 @@ MonoBehaviour:
   - {x: 1.5, y: 18, z: 0}
   m_ShapePathHash: 1788947189
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1618
+  m_InstanceId: 44794

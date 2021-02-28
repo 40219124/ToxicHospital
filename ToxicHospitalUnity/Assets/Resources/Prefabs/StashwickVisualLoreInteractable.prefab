@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6177001295967575902}
   - component: {fileID: 6177001295967575903}
   m_Layer: 0
-  m_Name: VisualLoreInteractable Variant
+  m_Name: StashwickVisualLoreInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ Transform:
   m_GameObject: {fileID: 6177001296819952118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6177001297205789235}
   m_RootOrder: 0
@@ -144,8 +144,8 @@ SpriteRenderer:
   m_SortingLayerID: 178850163
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f071c556c95efb944a4b4f463d7cab9b, type: 3}
-  m_Color: {r: 0.8584906, g: 0.81999063, b: 0.47378963, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 957a6f40562eeb44b8215d3d136a3668, type: 3}
+  m_Color: {r: 0.98933494, g: 1, b: 0.6933962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
