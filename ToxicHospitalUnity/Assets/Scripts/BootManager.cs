@@ -56,6 +56,7 @@ public class BootManager : MonoBehaviour
 
     void ClearOpenScenes()
     {
+        AudioListenerController.Instance.GoToBootScene();
         for (int i = openScenes.Count - 1; i >= 0; --i)
         {
             SceneManager.UnloadSceneAsync(openScenes[i]);
@@ -88,8 +89,8 @@ public class BootManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        openScenes.Add(scene); 
-        
+        openScenes.Add(scene);
+
         // ~~~ maybe some stuff relating to cameras or event systems
 
         EventSystem[] systems = FindObjectsOfType<EventSystem>();
