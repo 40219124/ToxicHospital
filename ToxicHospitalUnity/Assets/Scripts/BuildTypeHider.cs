@@ -6,41 +6,41 @@ using UnityEngine;
 
 public class BuildTypeHider : MonoBehaviour
 {
-	[SerializeField] eBuildType ShowInBuildType;
-	
-	[Flags]
-	enum eBuildType
-	{
-		DevBuild = 1,
-		LiveBuild = 2,
-		Editor = 4,
-		WebGl = 8,
-		Windows = 16,
-		Mac = 32,
-	}
+    [SerializeField] eBuildType ShowInBuildType;
 
-	void Awake()
-	{
-		bool shouldShow = true;
+    [Flags]
+    enum eBuildType
+    {
+        DevBuild = 1,
+        LiveBuild = 2,
+        Editor = 4,
+        WebGl = 8,
+        Windows = 16,
+        Mac = 32,
+    }
+
+    void Awake()
+    {
+        bool shouldShow = true;
 
 #if UNITY_EDITOR
-		if (!ShowInBuildType.HasFlag(eBuildType.Editor))
-		{
-			shouldShow = false;
-		}
+        if (!ShowInBuildType.HasFlag(eBuildType.Editor))
+        {
+            shouldShow = false;
+        }
 #else
 
-	#if DEVELOPMENT_BUILD
+#if DEVELOPMENT_BUILD
 			if (!ShowInBuildType.HasFlag(eBuildType.DevBuild))
 			{
 				shouldShow = false;
 			}
-	#else
+#else
 			if (!ShowInBuildType.HasFlag(eBuildType.LiveBuild))
 			{
 				shouldShow = false;
 			}
-	#endif
+#endif
 
 #endif
 
@@ -52,10 +52,10 @@ public class BuildTypeHider : MonoBehaviour
 #endif
 
 #if UNITY_STANDALONE_WIN
-		if (!ShowInBuildType.HasFlag(eBuildType.Windows))
-		{
-			shouldShow = false;
-		}
+        if (!ShowInBuildType.HasFlag(eBuildType.Windows))
+        {
+            shouldShow = false;
+        }
 #endif
 
 #if UNITY_STANDALONE_OSX
@@ -65,6 +65,6 @@ public class BuildTypeHider : MonoBehaviour
 		}
 #endif
 
-		gameObject.SetActive(shouldShow);
-	}
+        gameObject.SetActive(shouldShow);
+    }
 }

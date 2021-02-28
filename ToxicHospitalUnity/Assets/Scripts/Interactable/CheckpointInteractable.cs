@@ -12,12 +12,21 @@ public class CheckpointInteractable : BaseInteractable
     {
         base.Start();
 
-        //set up a referecne to every movableInteractable in the scene before they get deactivated
+
         if (!CheckpointStatus.Initialised)
         {
+            //set up a reference to every movableInteractable in the scene before they get deactivated
             CheckpointStatus.AllInteractables = GameObject.FindObjectsOfType<BaseInteractable>();
+
+            //get reference to all enemies
+            CheckpointStatus.AllEnemies = GameObject.FindObjectsOfType<EnemyController>();
+
+
             CheckpointStatus.Initialised = true;
         }
+
+
+
 
         player = GameObject.FindObjectOfType<PlayerController>();
     }
@@ -30,6 +39,7 @@ public class CheckpointInteractable : BaseInteractable
         SavePayerData();
         SaveInventoryData();
         SaveInteractableData();
+        SaveEnemyData();
         SaveEnemyData();
 
         // Logger.Log("Checkpoint activated");
@@ -84,8 +94,18 @@ public class CheckpointInteractable : BaseInteractable
 
     private void SaveEnemyData()
     {
-        //TODO enemies don't exist yet
+        CheckpointStatus.AllEnemyTransforms.Clear();
+        CheckpointStatus.EnemiesFacingRight.Clear();
+
+        foreach (EnemyController enemy in CheckpointStatus.AllEnemies)
+        {
+            CheckpointStatus.AllEnemyTransforms.Add(enemy.transform);
+            CheckpointStatus.EnemiesFacingRight.Add(enemy.FacingRight);
+        }
+
     }
+
+
 
     public static void LoadCheckpoint(InfectionTracker healthEffects)
     {
@@ -96,6 +116,7 @@ public class CheckpointInteractable : BaseInteractable
         Inventory.Instance.Recordings = CheckpointStatus.Recordings;
         Inventory.Instance.Letters = CheckpointStatus.Letters;
         Inventory.Instance.Reports = CheckpointStatus.Reports;
+        Debug.Log("Loaded Player");
 
         //load interactables' transforms and whether or not they are active
         for (int i = 0; i < CheckpointStatus.AllInteractables.Length; i++)
@@ -106,10 +127,20 @@ public class CheckpointInteractable : BaseInteractable
             CheckpointStatus.AllInteractables[i].transform.rotation = CheckpointStatus.AllInteractablesTransforms[i].rotation;
             CheckpointStatus.AllInteractables[i].gameObject.SetActive(CheckpointStatus.ActivyStatuses[i]);
 
-            Logger.Log("Loaded");
-
-
+            Logger.Log("Loaded Interactibles");
         }
+
+        //load all enemyies' transforms
+        for (int i = 0; i < CheckpointStatus.AllEnemies.Length; i++)
+        {
+            CheckpointStatus.AllEnemies[i].transform.position = CheckpointStatus.AllEnemyTransforms[i].position;
+            CheckpointStatus.AllEnemies[i].transform.rotation = CheckpointStatus.AllEnemyTransforms[i].rotation;
+            CheckpointStatus.AllEnemies[i].transform.localScale = CheckpointStatus.AllEnemyTransforms[i].localScale;
+
+            CheckpointStatus.AllEnemies[i].FacingRight = CheckpointStatus.EnemiesFacingRight[i];
+            Debug.Log("Loaded Enemies");
+        }
+
     }
 }
 

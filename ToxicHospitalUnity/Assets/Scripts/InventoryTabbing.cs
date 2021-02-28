@@ -4,11 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryTabbing : MonoBehaviour, ISelectHandler
+public class InventoryTabbing : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     private GameObject pageGroup;
     private List<Transform> pages = new List<Transform>();
     private int index;
+    private Image graphic;
+
+
+    public Color selectedColour;
+    public Color unselectedColour;
 
 
 
@@ -27,12 +32,43 @@ public class InventoryTabbing : MonoBehaviour, ISelectHandler
 
         //add ShowTab to the Button component
         gameObject.GetComponent<Button>().onClick.AddListener(ShowTab);
+
+        graphic = GetComponent<Image>();
+
+        if (index == 0)
+            graphic.color = selectedColour;
+        else
+            graphic.color = unselectedColour;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         Logger.Log("OnSelect");
         ShowTab();
+
+        Debug.Log("OnSelect");
+
+        ShowTab();
+
+        foreach (Transform t in gameObject.transform.parent)
+        {
+            Image temp = t.GetComponent<Image>();
+            if (t.GetSiblingIndex() == index)
+            {
+                temp.color = selectedColour;
+            }
+            else
+            {
+                temp.color = unselectedColour;
+            }
+        }
+
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        Debug.Log("OnDeselect");
+        //graphic.color = unselectedColour;
     }
 
     private void ShowTab()
