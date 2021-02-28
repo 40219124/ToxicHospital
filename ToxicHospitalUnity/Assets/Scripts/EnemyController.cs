@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 patrolPlacement;
 
     private SpriteRenderer enemyGraphic;
-    private PlayerController player;
+    private Transform player;
 
 
 
@@ -116,11 +116,11 @@ public class EnemyController : MonoBehaviour
     {
         bool playerFound = false;
         //if facing in direction of player
-        if ((facingRight && player.transform.position.x > gameObject.transform.position.x) || (!facingRight && player.transform.position.x < gameObject.transform.position.x))
+        if ((facingRight && player.position.x > gameObject.transform.position.x) || (!facingRight && player.position.x < gameObject.transform.position.x))
         {
             foreach (Transform t in castPointContainer)
             {
-                Vector2 rayDirection = Vector3.Normalize(player.transform.position - t.position);
+                Vector2 rayDirection = Vector3.Normalize(player.position - t.position);
 
                 RaycastHit2D hit = Physics2D.Raycast(t.position, rayDirection, visionRange, ~IgnoreLayer);
                 if (hit.collider.CompareTag("Player"))
@@ -152,7 +152,7 @@ public class EnemyController : MonoBehaviour
 
         //give initial movement
         Move(patrolSpeed, facingRight);
-        player = FindObjectOfType<PlayerController>();
+        player = GameObject.Find("PlayerCentreOfMass").transform;
     }
 
 

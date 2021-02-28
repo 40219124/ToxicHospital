@@ -349,6 +349,36 @@ MonoBehaviour:
   millieJump: {fileID: 2086946322}
   carsonStand: {fileID: 39279077}
   carsonCrawl: {fileID: 996594020}
+--- !u!1 &863381746366211622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8056519213817165161}
+  m_Layer: 0
+  m_Name: PlayerCentreOfMass
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8056519213817165161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863381746366211622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.567, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1431810161267954940}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431810160550802549
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +530,7 @@ Transform:
   - {fileID: 1071012594}
   - {fileID: 2128913295}
   - {fileID: 1410371447}
+  - {fileID: 8056519213817165161}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -560,10 +591,11 @@ MonoBehaviour:
   DepthBasedInfection: 0
   BloomIntensityMultiplier: 1
   damageRate: 5
+  maxHealth: 100
+  currentHealth: 0
   ratePerSecond: 0
   spriteGlow: {fileID: 2100000, guid: 60437b30acc18dd4cbf7e030e33c90e6, type: 2}
   baseColour: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
-  maxHealth: 100
 --- !u!1001 &285204196297564477
 PrefabInstance:
   m_ObjectHideFlags: 0
