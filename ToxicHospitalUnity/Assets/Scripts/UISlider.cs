@@ -36,8 +36,9 @@ public class UISlider : MonoBehaviour
     private void Start()
     {
         //must subscribe method to each event individually
-        GameManager.PauseEvent.AddListener(Toggle);
-        GameManager.ToggleIventoryEvent.AddListener(Toggle);
+        GameManager.PauseEvent?.AddListener(Toggle);
+        MainMenuManager.PauseEvent.AddListener(Toggle);
+        GameManager.ToggleIventoryEvent?.AddListener(Toggle);
 
         screenOffsets[0] = new Vector3(0, Screen.height, 0);
         screenOffsets[1] = new Vector3(0, -Screen.height, 0);
@@ -109,19 +110,16 @@ public class UISlider : MonoBehaviour
 
     public virtual void Hide()
     {
-        if (UISlider.uiLock)
-        {
-            //hide this individual
-            LeanTween.cancel(gameObject);
-            LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
-            //Logger.Log("Hide " + hiddenPosition);
+        //hide this individual
+        LeanTween.cancel(gameObject);
+        LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
+        //Logger.Log("Hide " + hiddenPosition);
 
-            //free the UI lock
-            individualShowing = false;
-            UISlider.uiLock = false;
+        //free the UI lock
+        individualShowing = false;
+        UISlider.uiLock = false;
 
-            DeselectSelectable();
-        }
+        DeselectSelectable();
 
         //do nothing with UI Lock in place
     }

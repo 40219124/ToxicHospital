@@ -45,6 +45,7 @@ public class BootManager : MonoBehaviour
     {
         ClearOpenScenes();
         LoadAdditiveScene(eScenes.mainMenu);
+        LoadAdditiveScene(eScenes.pause);
     }
 
     public void GoToGameScene()
