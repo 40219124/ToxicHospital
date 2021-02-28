@@ -38,5 +38,5 @@ public class UITranscript : MonoBehaviour
         closeButton.Select();
     }
 
-
+    public bool ShowingTranscript { get { return popup.IsShowing; } }
 }

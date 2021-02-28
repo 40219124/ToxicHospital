@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         hitboxChooser.ChooseHitbox(currentCharacter, playerAction);
         if(playerAction == ePlayerAction.interacting)
         {
-            if (!VisualLoreCanvasManager.Instance.gameObject.activeInHierarchy)
+            if (!VisualLoreCanvasManager.Instance.gameObject.activeInHierarchy && !UITranscript.Instance.ShowingTranscript)
             {
                 playerAction = ePlayerAction.none;
                 currentInteraction = null;

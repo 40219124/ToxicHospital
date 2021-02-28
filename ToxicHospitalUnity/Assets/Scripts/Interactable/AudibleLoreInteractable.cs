@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VisualLoreInteractable : LoreInteractable
+public class AudibleLoreInteractable : LoreInteractable
 {
     [SerializeField]
-    protected VisualLore visualLore;
+    protected AudioLore audioLore;
 
     protected override void SendLore()
     {
-        VisualLoreCanvasManager.Instance.UpdateAndOpen(visualLore);
+        RecordingPlayer.Instance.Activate(audioLore);
     }
 
     protected override void SendToInventory()
     {
-        GameManager.AddToInventory.Invoke(visualLore);
+        GameManager.AddToInventory.Invoke(audioLore);
     }
 }
