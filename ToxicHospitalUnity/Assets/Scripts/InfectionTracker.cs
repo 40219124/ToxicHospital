@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InfectionTracker : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class InfectionTracker : MonoBehaviour
     [SerializeField] private float ratePerSecond = 0;
     [SerializeField] private Material spriteGlow;
     [SerializeField] private Color baseColour;
+    [SerializeField] private GameObject deathPanel;
 
 
 
@@ -117,8 +119,16 @@ public class InfectionTracker : MonoBehaviour
         if (currentHealth <= 0)
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            CheckpointInteractable.LoadCheckpoint(this);
+            StartCoroutine("Die");
         }
+    }
+
+    IEnumerator Die()
+    {
+        deathPanel.SetActive(true);
+        CheckpointInteractable.LoadCheckpoint(this);
+        yield return new WaitForSeconds(2);
+        deathPanel.SetActive(false);
     }
 
     public float GetHealthPercentage()
@@ -167,6 +177,7 @@ public class InfectionTracker : MonoBehaviour
         IncrementBloom();
         TakeDamage();
         EvaluateDeath();
+
 
     }
 }
