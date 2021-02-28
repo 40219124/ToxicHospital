@@ -19,7 +19,7 @@ public class InfectionTracker : MonoBehaviour
     [SerializeField] private float ratePerSecond = 0;
     [SerializeField] private Material spriteGlow;
     [SerializeField] private Color baseColour;
-    [SerializeField] private GameObject deathPanel;
+    //[SerializeField] private GameObject deathPanel;
 
 
 
@@ -107,7 +107,7 @@ public class InfectionTracker : MonoBehaviour
 
     private void TakeDamage()
     {
-        if (infectionPercent.Equals(1.0f))
+        if (infectionPercent > 1.0f)
         {
             currentHealth -= damageRate * Time.deltaTime;
         }
@@ -119,16 +119,18 @@ public class InfectionTracker : MonoBehaviour
         if (currentHealth <= 0)
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            StartCoroutine("Die");
+            //StartCoroutine("Die");
+            CheckpointInteractable.LoadCheckpoint(this);
+            currentHealth = maxHealth;
         }
     }
 
     IEnumerator Die()
     {
-        deathPanel.SetActive(true);
+        //deathPanel.SetActive(true);
         CheckpointInteractable.LoadCheckpoint(this);
         yield return new WaitForSeconds(2);
-        deathPanel.SetActive(false);
+        //deathPanel.SetActive(false);
     }
 
     public float GetHealthPercentage()
