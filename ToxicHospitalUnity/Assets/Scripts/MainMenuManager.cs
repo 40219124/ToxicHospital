@@ -8,6 +8,15 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
     private Selectable startOption;
+    public static UIToggleEvent PauseEvent;
+
+    void Awake()
+    {
+        if (PauseEvent == null)
+        {
+            PauseEvent = new UIToggleEvent();
+        }
+    }
 
     private void Start()
     {
@@ -21,7 +30,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void UIOpenSettings()
     {
-        // ~~~ open settings screen
+        PauseEvent.Invoke("pause");
     }
 
     public void UIQuitGame()
