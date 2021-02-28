@@ -31,7 +31,7 @@ public class InventoryTabbing : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("OnSelect");
+        Logger.Log("OnSelect");
         ShowTab();
     }
 

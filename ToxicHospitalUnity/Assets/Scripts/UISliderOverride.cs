@@ -15,7 +15,7 @@ public class UISliderOverride : UISlider
         //show this individual
         LeanTween.cancel(gameObject);
         LeanTween.move(rect, showingPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = showingPosition; });
-        //Debug.Log("Show " + showingPosition);}
+        //Logger.Log("Show " + showingPosition);}
         individualShowing = true;
     }
 
@@ -26,7 +26,7 @@ public class UISliderOverride : UISlider
         //hide this individual
         LeanTween.cancel(gameObject);
         LeanTween.move(rect, hiddenPosition, easeTime).setEase(LeanTweenType.easeOutQuint).setOnComplete(() => { rect.localPosition = hiddenPosition; });
-        //Debug.Log("Hide " + hiddenPosition);
+        //Logger.Log("Hide " + hiddenPosition);
         individualShowing = false;
     }
 }

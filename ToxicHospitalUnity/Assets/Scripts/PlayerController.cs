@@ -20,7 +20,7 @@ public enum ePlayerAction
     rememberInteractable = waiting | interacting | pushing,
     directionLocked = pushing | interacting | waiting,
     blocksSwapping = waiting | interacting | jumping | pushing | swapping
-    // ~~~ stopsInteracting = inMenu???    
+    // ~~~ stopsInteracting = inMenu???
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -346,14 +346,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*Debug.Log("Start Collision Print");
+        /*Logger.Log("Start Collision Print");
         List<ContactPoint2D> contacts = new List<ContactPoint2D>();
         collider.GetContacts(contacts);
         foreach (ContactPoint2D point in contacts)
         {
-            Debug.Log($"Contact normal {point.normal}");
+            Logger.Log($"Contact normal {point.normal}");
         }
-        Debug.Log("End Collision Print");*/
+        Logger.Log("End Collision Print");*/
     }
 
     private bool ActionInGroup(ePlayerAction action, ePlayerAction group)

@@ -32,14 +32,14 @@ public class CheckpointInteractable : BaseInteractable
         SaveInteractableData();
         SaveEnemyData();
 
-        // Debug.Log("Checkpoint activated");
-        // Debug.Log(string.Format("Player Infection: {0}", CheckpointStatus.PlayerInfectionLevel));
-        // Debug.Log(string.Format("Player Health(%): {0}", CheckpointStatus.PlayerHealthPercentage));
-        // Debug.Log(string.Format("Player transform.position: {0}", CheckpointStatus.PlayerPosition));
-        // Debug.Log(string.Format("Inventory Audio Logs: {0}", CheckpointStatus.Recordings));
-        // Debug.Log(string.Format("Interactable list, element 0, name: {0}", CheckpointStatus.AllInteractables[0].name));
-        // Debug.Log(string.Format("Interactable transfroms list, element 0, position: {0}", CheckpointStatus.AllInteractablesTransforms[0].position));
-        // Debug.Log(string.Format("Interactable activity statuses list, element 0: {0}", CheckpointStatus.ActivyStatuses[0]));
+        // Logger.Log("Checkpoint activated");
+        // Logger.Log(string.Format("Player Infection: {0}", CheckpointStatus.PlayerInfectionLevel));
+        // Logger.Log(string.Format("Player Health(%): {0}", CheckpointStatus.PlayerHealthPercentage));
+        // Logger.Log(string.Format("Player transform.position: {0}", CheckpointStatus.PlayerPosition));
+        // Logger.Log(string.Format("Inventory Audio Logs: {0}", CheckpointStatus.Recordings));
+        // Logger.Log(string.Format("Interactable list, element 0, name: {0}", CheckpointStatus.AllInteractables[0].name));
+        // Logger.Log(string.Format("Interactable transfroms list, element 0, position: {0}", CheckpointStatus.AllInteractablesTransforms[0].position));
+        // Logger.Log(string.Format("Interactable activity statuses list, element 0: {0}", CheckpointStatus.ActivyStatuses[0]));
     }
 
     private void RestorePlayerHealthEffects()
@@ -100,13 +100,13 @@ public class CheckpointInteractable : BaseInteractable
         //load interactables' transforms and whether or not they are active
         for (int i = 0; i < CheckpointStatus.AllInteractables.Length; i++)
         {
-            Debug.Log(string.Format("Player transform.position: {0}", CheckpointStatus.PlayerPosition));
+            Logger.Log(string.Format("Player transform.position: {0}", CheckpointStatus.PlayerPosition));
 
             CheckpointStatus.AllInteractables[i].transform.position = CheckpointStatus.AllInteractablesTransforms[i].position;
             CheckpointStatus.AllInteractables[i].transform.rotation = CheckpointStatus.AllInteractablesTransforms[i].rotation;
             CheckpointStatus.AllInteractables[i].gameObject.SetActive(CheckpointStatus.ActivyStatuses[i]);
 
-            Debug.Log("Loaded");
+            Logger.Log("Loaded");
 
 
         }

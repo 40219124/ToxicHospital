@@ -67,11 +67,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             //strictly for testing purposes DELETE AFTERWARDS
-            Debug.LogWarning("Remove this testing code when finished.");
+            Logger.LogWarning("Remove this testing code when finished.");
             foreach (LoreItem t in TEST)
             {
                 AddToInventory.Invoke(t);
-                Debug.LogWarning("Remove this testing code when finished.");
+                Logger.LogWarning("Remove this testing code when finished.");
             }
         }
     }

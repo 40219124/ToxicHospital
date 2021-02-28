@@ -20,12 +20,12 @@ public class LoreInteractable : BaseInteractable
 
     protected virtual void SendLore()
     {
-        Debug.LogWarning("Base Lore Class");
+        Logger.LogWarning("Base Lore Class");
     }
 
     protected virtual void SendToInventory()
     {
-        Debug.LogWarning("Base Lore Class");
+        Logger.LogWarning("Base Lore Class");
     }
 
     protected virtual void FirstInteraction()
