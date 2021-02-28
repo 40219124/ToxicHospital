@@ -42,6 +42,13 @@ public class PlayerController : MonoBehaviour
     private eInputActionInstruction nextAction = eInputActionInstruction.none;
 
     private ePlayerAction playerAction = ePlayerAction.none;
+    private ePlayerAction PlayerAction
+    {
+        set
+        {
+            playerAction = value;
+        }
+    }
 
     [SerializeField]
     private float moveSpeed = 3.0f;
@@ -70,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -96,11 +103,11 @@ public class PlayerController : MonoBehaviour
         ActionUpdate();
         AnimatorUpdate();
         hitboxChooser.ChooseHitbox(currentCharacter, playerAction);
-        if(playerAction == ePlayerAction.interacting)
+        if (playerAction == ePlayerAction.interacting)
         {
             if (!VisualLoreCanvasManager.Instance.gameObject.activeInHierarchy && !UITranscript.Instance.ShowingTranscript)
             {
-                playerAction = ePlayerAction.none;
+                PlayerAction = ePlayerAction.none;
                 currentInteraction = null;
             }
         }
@@ -182,7 +189,7 @@ public class PlayerController : MonoBehaviour
                 if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
                 {
                     currentAction = nextAction;
-                    playerAction = outAction;
+                    PlayerAction = outAction;
                     if (playerAction == ePlayerAction.waiting)
                     {
                         StartCoroutine(WaitForInteractable(interactable));
@@ -210,7 +217,7 @@ public class PlayerController : MonoBehaviour
         {
             yield return null;
         }
-        playerAction = interactable.GetPlayerAction;
+        PlayerAction = interactable.GetPlayerAction;
         SaveCurrentInteractable(playerAction, interactable);
     }
 
@@ -278,26 +285,36 @@ public class PlayerController : MonoBehaviour
 
     private void SetPlayerAction(ePlayerAction action)
     {
-        if(ActionInGroup(action, ePlayerAction.isJustMovement) || action == ePlayerAction.none)
+        if (ActionInGroup(action, ePlayerAction.isJustMovement) || action == ePlayerAction.none)
         {
             if (ActionInGroup(playerAction, ePlayerAction.isJustMovement) || playerAction == ePlayerAction.none)
             {
-                playerAction = action;
+                if (action == ePlayerAction.jumping && playerAction != ePlayerAction.jumping)
+                {
+                    // starting jump
+                    PlayerSFXManager.Instance.PlayActionSFX(currentCharacter, ePlayerAction.jumping, true);
+                }
+                else if (playerAction == ePlayerAction.jumping && action != ePlayerAction.jumping)
+                {
+                    // ending jump
+                    PlayerSFXManager.Instance.PlayActionSFX(currentCharacter, ePlayerAction.jumping, false);
+                }
+                PlayerAction = action;
             }
         }
         else
         {
-            playerAction = action;
+            PlayerAction = action;
         }
     }
 
     private bool StartSwapCharacter()
     {
-        bool outBool = !ActionInGroup(playerAction, ePlayerAction.blocksSwapping) && 
+        bool outBool = !ActionInGroup(playerAction, ePlayerAction.blocksSwapping) &&
             !(currentCharacter == eInteractionRequirement.journalist && !millieSwapChecker.CanSwapToMillie);
         if (outBool)
         {
-            playerAction = ePlayerAction.swapping;
+            PlayerAction = ePlayerAction.swapping;
             animator.SetTrigger("SwapChar");
         }
         return outBool;
@@ -314,7 +331,7 @@ public class PlayerController : MonoBehaviour
             currentCharacter = eInteractionRequirement.journalist;
         }
         SetAnimatorCharacter();
-        playerAction = ePlayerAction.none;
+        PlayerAction = ePlayerAction.none;
     }
 
     private void SetAnimatorCharacter()

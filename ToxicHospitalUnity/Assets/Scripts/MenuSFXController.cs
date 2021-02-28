@@ -50,13 +50,13 @@ public class MenuSFXController : MonoBehaviour
 
     public void OnItemSelected()
     {
-        Debug.Log("New selection");
+        //Debug.Log("New selection");
         PlayAudioClip(changeSelected);
     }
 
     private void OnAnyButtonClick()
     {
-        Debug.Log("ClickSelection");
+        //Debug.Log("ClickSelection");
         PlayAudioClip(confirmSelected);
     }
 
