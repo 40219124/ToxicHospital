@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public enum eScenes { none, boot, mainMenu, game, pause, inventory }
+public enum eScenes { none, boot, mainMenu, game, pause, inventory, overlay }
 
 public class BootManager : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class BootManager : MonoBehaviour
         {eScenes.boot, "Boot"},
         {eScenes.mainMenu, "StartScreen"},
         {eScenes.game, "InGame"}, // ~~~ Real game scene please
+        {eScenes.overlay, "Overlay"},
         {eScenes.pause, "PauseScreen"},
         {eScenes.inventory, "InventoryScene"}
     };
@@ -50,6 +51,7 @@ public class BootManager : MonoBehaviour
     {
         ClearOpenScenes();
         LoadAdditiveScene(eScenes.game);
+        LoadAdditiveScene(eScenes.overlay);
         LoadAdditiveScene(eScenes.pause);
         LoadAdditiveScene(eScenes.inventory);
     }
@@ -88,14 +90,14 @@ public class BootManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        openScenes.Add(scene); 
-        
+        openScenes.Add(scene);
+
         // ~~~ maybe some stuff relating to cameras or event systems
 
         EventSystem[] systems = FindObjectsOfType<EventSystem>();
-        foreach(EventSystem es in systems)
+        foreach (EventSystem es in systems)
         {
-            if(es != bootSystem)
+            if (es != bootSystem)
             {
                 es.enabled = false;
             }
