@@ -8,8 +8,7 @@ public class EnemyController : MonoBehaviour
     public enum eEnemyState
     {
         patrolling,
-        chasing,
-        attacking
+        chasing
     }
 
     public eEnemyState EnemyState;
@@ -26,6 +25,7 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 patrolPlacement;
     private float currentSpeed;
+    private float cooldownCurrent;
 
     private SpriteRenderer enemyGraphic;
     private Transform player;
@@ -141,6 +141,37 @@ public class EnemyController : MonoBehaviour
         return playerFound;
     }
 
+    private bool Attacking()
+    {
+        bool playerHit = false;
+        float castLength = 1.0f;
+        int directionMultiplier = facingRight ? 1 : -1;
+        Vector2 castDirection = Vector2.right * directionMultiplier;
+        print("Attack cast direction: " + castDirection);
+
+
+        foreach (Transform t in castPointContainer)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(t.position, castDirection, castLength, ~IgnoreLayer);
+            //if raycast hits AND it hit something tagged player
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
+            {
+                //wall found
+                Debug.DrawRay(t.position, castDirection * castLength, Color.red);
+                Debug.Log(hit.collider.name);
+                playerHit = true;
+
+            }
+            else
+            {
+                //Debug.DrawRay(t.position, castDirection * castLength, Color.blue);
+            }
+        }
+
+        Debug.Log("Playerhit : " + playerHit);
+        return playerHit;
+    }
+
 
 
     void Start()
@@ -150,6 +181,7 @@ public class EnemyController : MonoBehaviour
 
 
         currentSpeed = patrolSpeed;
+        cooldownCurrent = attackCooldown;
 
 
         //give initial movement
@@ -208,6 +240,17 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogWarning("Something wrong in state machine.");
         }
+
+
+        //attack on cooldown
+        cooldownCurrent -= Time.deltaTime;
+        if (cooldownCurrent <= 0 && Attacking())
+        {
+            playerHealthEffects.InfectionProgress += 20;
+            playerHealthEffects.currentHealth -= 20;
+            cooldownCurrent = attackCooldown;
+        }
+
 
     }
 
