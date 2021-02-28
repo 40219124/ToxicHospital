@@ -551,7 +551,7 @@ MonoBehaviour:
   slowSpeedCoefficient: 0.5
   moveAcceleration: 12
   slowAccelerationCoefficient: 0.25
-  jumpForce: 13
+  jumpForce: 12
 --- !u!50 &1431810161267954941
 Rigidbody2D:
   serializedVersion: 4
