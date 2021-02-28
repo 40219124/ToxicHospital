@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/InventoryScene.unity
     guid: f7dbc5faff1e69f488e07f8386d807d7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Resources/Scenes/Daniel - Test 2.unity
     guid: 9905f883460a9c041a13d2dfbd08c749
   - enabled: 0
