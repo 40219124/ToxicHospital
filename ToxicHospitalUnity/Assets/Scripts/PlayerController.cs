@@ -16,6 +16,7 @@ public enum ePlayerAction
     stopsXMovement = waiting | interacting | swapping,
     slowsXAccVel = pushing,
     blocksJumping = waiting | interacting | jumping | pushing | swapping,
+    blocksInteracting = interacting,
     rememberInteractable = waiting | interacting | pushing,
     directionLocked = pushing | interacting | waiting,
     blocksSwapping = waiting | interacting | jumping | pushing | swapping
@@ -25,6 +26,9 @@ public enum ePlayerAction
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController instance;
+    public static PlayerController Instance { get { return instance; } }
+
     [SerializeField]
     eInteractionRequirement currentCharacter = eInteractionRequirement.porter;
 
@@ -66,6 +70,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -88,6 +96,14 @@ public class PlayerController : MonoBehaviour
         ActionUpdate();
         AnimatorUpdate();
         hitboxChooser.ChooseHitbox(currentCharacter, playerAction);
+        if(playerAction == ePlayerAction.interacting)
+        {
+            if (!VisualLoreCanvasManager.Instance.gameObject.activeInHierarchy && !UITranscript.Instance.ShowingTranscript)
+            {
+                playerAction = ePlayerAction.none;
+                currentInteraction = null;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -160,22 +176,24 @@ public class PlayerController : MonoBehaviour
     {
         if (nextAction == eInputActionInstruction.interact)
         {
-            BaseInteractable interactable = currentInteraction;
-            if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
+            if (!ActionInGroup(playerAction, ePlayerAction.blocksInteracting))
             {
-                currentAction = nextAction;
-                playerAction = outAction;
-                if (playerAction == ePlayerAction.waiting)
+                BaseInteractable interactable = currentInteraction;
+                if (interactor.TryInteractInput(currentCharacter, ref interactable, out ePlayerAction outAction))
                 {
-                    StartCoroutine(WaitForInteractable(interactable));
+                    currentAction = nextAction;
+                    playerAction = outAction;
+                    if (playerAction == ePlayerAction.waiting)
+                    {
+                        StartCoroutine(WaitForInteractable(interactable));
+                    }
+                    SaveCurrentInteractable(outAction, interactable);
                 }
-                SaveCurrentInteractable(outAction, interactable);
+                else
+                {
+                    currentAction = eInputActionInstruction.none;
+                }
             }
-            else
-            {
-                currentAction = eInputActionInstruction.none;
-            }
-
         }
         else if (nextAction == eInputActionInstruction.swap)
         {

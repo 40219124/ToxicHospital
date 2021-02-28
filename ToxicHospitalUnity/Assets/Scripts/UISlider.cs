@@ -107,4 +107,6 @@ public class UISlider : MonoBehaviour
 
         //do nothing with UI Lock in place
     }
+
+    public bool IsShowing { get { return individualShowing; } }
 }

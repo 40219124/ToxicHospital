@@ -29,14 +29,14 @@ public class PlayerInteractor : MonoBehaviour
         }
         else if (interactables.Count > 1)
         {
-            float shortestSq = ((Vector2)transform.position - (Vector2)interactables[0].transform.position).sqrMagnitude;
+            float shortest = Mathf.Abs(transform.position.x - interactables[0].transform.position.x);
             int shortestI = 0;
             for (int i = 1; i < interactables.Count; ++i)
             {
-                float currentSq = ((Vector2)transform.position - (Vector2)interactables[i].transform.position).sqrMagnitude;
-                if (currentSq < shortestSq)
+                float current = Mathf.Abs(transform.position.x - interactables[i].transform.position.x);
+                if (current < shortest)
                 {
-                    shortestSq = currentSq;
+                    shortest = current;
                     shortestI = i;
                 }
             }

@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 2.3}
+  m_Size: {x: 0.3, y: 2.36}
   m_EdgeRadius: 0
 --- !u!114 &1410371448
 MonoBehaviour:
@@ -603,11 +603,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1431810161267954940}
     m_Modifications:
-    - target: {fileID: 4159549042540094327, guid: b8277ab33163f30488483f1e1da4ff15,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4159549042540094327, guid: b8277ab33163f30488483f1e1da4ff15,
         type: 3}
       propertyPath: m_Size.y
