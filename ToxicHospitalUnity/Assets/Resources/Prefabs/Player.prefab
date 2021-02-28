@@ -1236,7 +1236,7 @@ MonoBehaviour:
   damageRate: 5
   maxHealth: 100
   currentHealth: 0
-  ratePerSecond: 0
+  ratePerSecond: 10
   spriteGlow: {fileID: 2100000, guid: 60437b30acc18dd4cbf7e030e33c90e6, type: 2}
   baseColour: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
 --- !u!1001 &953846645
