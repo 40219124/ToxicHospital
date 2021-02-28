@@ -83,9 +83,12 @@ public class UISlider : MonoBehaviour
     protected virtual void DeselectSelectable()
     {
         //Selectable current = lastSelected;
-        Selectable current = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
-        EventSystem.current.SetSelectedGameObject(null);
-        lastSelected = current;
+        Selectable current = EventSystem.current.currentSelectedGameObject?.GetComponent<Selectable>();
+        if (current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            lastSelected = current;
+        }
     }
 
 
