@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Inventory Inventory;
 
-    public List<LoreItem> TEST = new List<LoreItem>();
 
     void Awake()
     {
@@ -64,16 +63,6 @@ public class GameManager : MonoBehaviour
             ToggleIventoryEvent.Invoke("inventory");
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            //strictly for testing purposes DELETE AFTERWARDS
-            Logger.LogWarning("Remove this testing code when finished.");
-            foreach (LoreItem t in TEST)
-            {
-                AddToInventory.Invoke(t);
-                Logger.LogWarning("Remove this testing code when finished.");
-            }
-        }
     }
 
     public static void ToggleTranscripts()
