@@ -147,7 +147,7 @@ public class EnemyController : MonoBehaviour
         float castLength = 1.0f;
         int directionMultiplier = FacingRight ? 1 : -1;
         Vector2 castDirection = Vector2.right * directionMultiplier;
-        print("Attack cast direction: " + castDirection);
+        Logger.Log("Attack cast direction: " + castDirection);
 
 
         foreach (Transform t in castPointContainer)
