@@ -77,7 +77,7 @@ public class UISlider : MonoBehaviour
 
     protected virtual void SelectSelectable()
     {
-        lastSelected.Select();
+        lastSelected?.Select();
     }
 
     protected virtual void DeselectSelectable()
