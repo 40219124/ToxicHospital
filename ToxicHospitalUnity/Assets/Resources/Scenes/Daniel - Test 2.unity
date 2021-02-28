@@ -168,6 +168,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 348737242}
     m_Modifications:
+    - target: {fileID: 7754380281976823849, guid: 7219df61a16d6eb4cb9c01180eca1b8d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7754380283033575352, guid: 7219df61a16d6eb4cb9c01180eca1b8d,
         type: 3}
       propertyPath: m_Name
@@ -659,7 +664,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &924882039
 MonoBehaviour:

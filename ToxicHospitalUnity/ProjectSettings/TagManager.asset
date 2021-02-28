@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - InvTabs
   - CamBox
+  - Obstruction
   layers:
   - Default
   - TransparentFX
