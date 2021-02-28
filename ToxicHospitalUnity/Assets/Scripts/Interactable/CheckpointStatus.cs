@@ -29,7 +29,8 @@ public static class CheckpointStatus
     public static List<bool> ActivyStatuses = new List<bool>();
 
     // Assume will need a list of enemy health, transforms, and whether or not they are active gameobjects 
-    //public static List<Enemy> Enemies = new List<Enemy>();
-    //public static List<EnemyStatus> MoveableInteractableTransforms = new List<Transform>();
+    public static EnemyController[] AllEnemies;
+    public static List<Transform> AllEnemyTransforms = new List<Transform>();
+    public static List<bool> EnemiesFacingRight = new List<bool>();
 }
 

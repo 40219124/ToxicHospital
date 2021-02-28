@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float visionRange = 15;
     [SerializeField] private float attackCooldown = 1;
     [SerializeField] private Transform castPointContainer;
-    [SerializeField] private bool facingRight;
+    public bool FacingRight;
 
     private Vector3 patrolPlacement;
     private float currentSpeed;
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
     {
         bool wallHit = false;
         float castLength = 0.8f;
-        int directionMultiplier = facingRight ? 1 : -1;
+        int directionMultiplier = FacingRight ? 1 : -1;
         Vector2 castDirection = Vector2.right * directionMultiplier;
         print("walls cast direction: " + castDirection);
 
@@ -119,7 +119,7 @@ public class EnemyController : MonoBehaviour
     {
         bool playerFound = false;
         //if facing in direction of player
-        if ((facingRight && player.position.x > gameObject.transform.position.x) || (!facingRight && player.position.x < gameObject.transform.position.x))
+        if ((FacingRight && player.position.x > gameObject.transform.position.x) || (!FacingRight && player.position.x < gameObject.transform.position.x))
         {
             foreach (Transform t in castPointContainer)
             {
@@ -145,7 +145,7 @@ public class EnemyController : MonoBehaviour
     {
         bool playerHit = false;
         float castLength = 1.0f;
-        int directionMultiplier = facingRight ? 1 : -1;
+        int directionMultiplier = FacingRight ? 1 : -1;
         Vector2 castDirection = Vector2.right * directionMultiplier;
         print("Attack cast direction: " + castDirection);
 
@@ -198,8 +198,8 @@ public class EnemyController : MonoBehaviour
         if (DetectEdges() || DetectWalls())
         {
             Debug.Log(DetectEdges() + ", " + DetectWalls());
-            facingRight = !facingRight;
-            Move(currentSpeed, facingRight);
+            FacingRight = !FacingRight;
+            Move(currentSpeed, FacingRight);
 
         }
 
@@ -221,20 +221,20 @@ public class EnemyController : MonoBehaviour
             Debug.Log("patrolling");
             float distanceFromPlacementPoint = Mathf.Abs((patrolPlacement - gameObject.transform.position).x);
             //if (we face right and placement is left OR we face left and placement position is right) AND distance to placement position greater than patrol area radius
-            if (((facingRight && patrolPlacement.x < gameObject.transform.position.x)
-            || (!facingRight && patrolPlacement.x > gameObject.transform.position.x))
+            if (((FacingRight && patrolPlacement.x < gameObject.transform.position.x)
+            || (!FacingRight && patrolPlacement.x > gameObject.transform.position.x))
             && distanceFromPlacementPoint > patrolRadius)
             {
-                facingRight = !facingRight;
+                FacingRight = !FacingRight;
             }
 
-            Move(currentSpeed, facingRight);
+            Move(currentSpeed, FacingRight);
         }
         else if (EnemyState == eEnemyState.chasing)
         {
             currentSpeed = chaseSpeed;
             Debug.Log("chasing");
-            Move(currentSpeed, facingRight);
+            Move(currentSpeed, FacingRight);
         }
         else
         {
