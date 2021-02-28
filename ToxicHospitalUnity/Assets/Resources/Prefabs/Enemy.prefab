@@ -51,7 +51,7 @@ MonoBehaviour:
   EnemyState: 0
   IgnoreLayer:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 36
   patrolRadius: 3
   patrolSpeed: 1
   chaseSpeed: 2

@@ -1107,6 +1107,7 @@ GameObject:
   - component: {fileID: 920169716}
   - component: {fileID: 920169715}
   - component: {fileID: 920169718}
+  - component: {fileID: 920169719}
   m_Layer: 5
   m_Name: ReportTab
   m_TagString: Untagged
@@ -1228,6 +1229,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &920169719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920169713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9b71687ab3f6c4c89f69d4fd743d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035673885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,6 +1431,7 @@ GameObject:
   - component: {fileID: 1243680411}
   - component: {fileID: 1243680410}
   - component: {fileID: 1243680413}
+  - component: {fileID: 1243680414}
   m_Layer: 5
   m_Name: AudioTab
   m_TagString: Untagged
@@ -1539,6 +1553,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1243680414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243680408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9b71687ab3f6c4c89f69d4fd743d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1322869788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2037,7 @@ GameObject:
   - component: {fileID: 1693245014}
   - component: {fileID: 1693245013}
   - component: {fileID: 1693245016}
+  - component: {fileID: 1693245017}
   m_Layer: 5
   m_Name: LetterTab
   m_TagString: Untagged
@@ -2132,6 +2159,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1693245017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693245011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9b71687ab3f6c4c89f69d4fd743d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1721123539
 GameObject:
   m_ObjectHideFlags: 0
