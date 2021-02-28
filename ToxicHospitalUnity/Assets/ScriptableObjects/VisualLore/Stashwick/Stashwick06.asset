@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick06
+  m_EditorClassIdentifier: 
+  objectName: Report 006
+  objectSprite: {fileID: 21300000, guid: 91a57735a1eecb342b67e2b863a71424, type: 3}
+  classification: 2
+  objectText: "HARPO \r\nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n02 February 2021.\r\nSubject: Peter Darson\r\n\r\n        Cerebral
+    Research in Jeopardy\r\n\r\n1030:\r\nTHAT SON OF A BITCH! FOUR YEARS OF RESEARCH!
+    Four BLOODY YEARS, SEVENTEEN-HOUR DAYS!! And he wants to cancel all of our hard
+    work! MY WORK!!!\r\n\r\nThe bastard! He wouldn\u2019t even listen to me. Kept
+    rambling on about liability and insurance payouts. Men like him can never think
+    about the greater good for man. It\u2019s always about their bottom line.\r\n\r\nAs
+    if blood hasn\u2019t been on his greedy filthy hands before.\r\n\r\nI wont let
+    him stop this. I wont let him sabotage this work. The ingrate doesn\u2019t see
+    how he\u2019s damning mankind. I must do something to protect my work, I will
+    NOT throw away years of my life so a billionaire can sleep better. My work is
+    not inhumane. There are casualties in the persuit of scientific breakthroughs.\r\n\r\nALL
+    SUCCESS COMES AT THE COST OF SACRIFCE!\r\n\r\nI know what needs to be done.\r\n\r\nA
+    recording of my \u201Cconversation with the President is contained in Audio File
+    #20.\r\nContext and supplimentary data are supported by audio file.\r\n\r\nC.M
+    Stashwick\r\n\r\nHead of Applied Research\r\n\r\nReport 006"
