@@ -20,14 +20,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float patrolSpeed = 2;
     [SerializeField] private float chaseSpeed = 5;
     [SerializeField] private float visionRange = 15;
+    [SerializeField] private float attackCooldown = 1;
     [SerializeField] private Transform castPointContainer;
+    [SerializeField] private bool facingRight;
 
-
-    private bool facingRight;
     private Vector3 patrolPlacement;
+    private float currentSpeed;
 
     private SpriteRenderer enemyGraphic;
     private Transform player;
+    private InfectionTracker playerHealthEffects;
+
 
 
 
@@ -123,7 +126,7 @@ public class EnemyController : MonoBehaviour
                 Vector2 rayDirection = Vector3.Normalize(player.position - t.position);
 
                 RaycastHit2D hit = Physics2D.Raycast(t.position, rayDirection, visionRange, ~IgnoreLayer);
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
                     //player found
                     Debug.DrawRay(t.position, rayDirection * visionRange, Color.green);
@@ -146,13 +149,13 @@ public class EnemyController : MonoBehaviour
         patrolPlacement = gameObject.transform.position;
 
 
-        //randomize walk direction
-        int coin = Random.Range(0, 1);
-        facingRight = coin != 0;
+        currentSpeed = patrolSpeed;
+
 
         //give initial movement
-        Move(patrolSpeed, facingRight);
+        //Move(patrolSpeed, facingRight);
         player = GameObject.Find("PlayerCentreOfMass").transform;
+        playerHealthEffects = GameObject.FindObjectOfType<InfectionTracker>();
     }
 
 
@@ -164,6 +167,8 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log(DetectEdges() + ", " + DetectWalls());
             facingRight = !facingRight;
+            Move(currentSpeed, facingRight);
+
         }
 
         //if player in view, chase
@@ -179,6 +184,7 @@ public class EnemyController : MonoBehaviour
         //patrolling back and forth within radius of spawn, turn around if out or radius or at an edge/wall unless player detected
         if (EnemyState == eEnemyState.patrolling)
         {
+            currentSpeed = patrolSpeed;
 
             Debug.Log("patrolling");
             float distanceFromPlacementPoint = Mathf.Abs((patrolPlacement - gameObject.transform.position).x);
@@ -190,17 +196,19 @@ public class EnemyController : MonoBehaviour
                 facingRight = !facingRight;
             }
 
-            Move(patrolSpeed, facingRight);
+            Move(currentSpeed, facingRight);
         }
         else if (EnemyState == eEnemyState.chasing)
         {
+            currentSpeed = chaseSpeed;
             Debug.Log("chasing");
-            Move(chaseSpeed, facingRight);
+            Move(currentSpeed, facingRight);
         }
         else
         {
             Debug.LogWarning("Something wrong in state machine.");
         }
+
     }
 
 }
