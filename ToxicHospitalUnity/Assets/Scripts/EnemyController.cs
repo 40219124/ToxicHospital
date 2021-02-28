@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             Debug.DrawRay(transform.position, Vector2.down * castLength, Color.green);
-            //Debug.Log("solid floor");
+            //Logger.Log("solid floor");
             return false;
         }
     }
@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
             {
                 //wall found
                 Debug.DrawRay(t.position, castDirection * castLength, Color.red);
-                Debug.Log(hit.collider.name);
+                Logger.Log(hit.collider.name);
                 wallHit = true;
 
             }
@@ -158,7 +158,7 @@ public class EnemyController : MonoBehaviour
             {
                 //wall found
                 Debug.DrawRay(t.position, castDirection * castLength, Color.red);
-                Debug.Log(hit.collider.name);
+                Logger.Log(hit.collider.name);
                 playerHit = true;
 
             }
@@ -168,7 +168,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        Debug.Log("Playerhit : " + playerHit);
+        Logger.Log("Playerhit : " + playerHit);
         return playerHit;
     }
 
@@ -197,9 +197,15 @@ public class EnemyController : MonoBehaviour
         //TODO or DetectedWall
         if (DetectEdges() || DetectWalls())
         {
+<<<<<<< HEAD
             Debug.Log(DetectEdges() + ", " + DetectWalls());
             FacingRight = !FacingRight;
             Move(currentSpeed, FacingRight);
+=======
+            Logger.Log(DetectEdges() + ", " + DetectWalls());
+            facingRight = !facingRight;
+            Move(currentSpeed, facingRight);
+>>>>>>> Dev
 
         }
 
@@ -218,7 +224,7 @@ public class EnemyController : MonoBehaviour
         {
             currentSpeed = patrolSpeed;
 
-            Debug.Log("patrolling");
+            Logger.Log("patrolling");
             float distanceFromPlacementPoint = Mathf.Abs((patrolPlacement - gameObject.transform.position).x);
             //if (we face right and placement is left OR we face left and placement position is right) AND distance to placement position greater than patrol area radius
             if (((FacingRight && patrolPlacement.x < gameObject.transform.position.x)
@@ -233,12 +239,17 @@ public class EnemyController : MonoBehaviour
         else if (EnemyState == eEnemyState.chasing)
         {
             currentSpeed = chaseSpeed;
+<<<<<<< HEAD
             Debug.Log("chasing");
             Move(currentSpeed, FacingRight);
+=======
+            Logger.Log("chasing");
+            Move(currentSpeed, facingRight);
+>>>>>>> Dev
         }
         else
         {
-            Debug.LogWarning("Something wrong in state machine.");
+            Logger.LogWarning("Something wrong in state machine.");
         }
 
 

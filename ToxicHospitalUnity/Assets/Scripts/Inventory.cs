@@ -32,7 +32,7 @@ public class Inventory
 
     public void AddItem(LoreItem item)
     {
-        Debug.LogWarning("Remove this testing code when finished.");
+        Logger.LogWarning("Remove this testing code when finished.");
         int index = -1;
 
         if (item.classification == LoreType.AudioLog)
@@ -55,7 +55,7 @@ public class Inventory
         }
         else
         {
-            Debug.LogError("Invalid enum value for item.classification/LoreType (" + item.classification + ") on object : " + item.name + ", " + item.objectName);
+            Logger.LogError("Invalid enum value for item.classification/LoreType (" + item.classification + ") on object : " + item.name + ", " + item.objectName);
         }
         AddItemToUI(item, index);
     }

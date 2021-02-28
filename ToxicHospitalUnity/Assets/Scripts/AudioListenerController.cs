@@ -53,6 +53,7 @@ public class AudioListenerController : MonoBehaviour
     public void GoToGameScene()
     {
         SetParentTo(PlayerController.Instance.transform); // ~~~ set to head level
+        transform.Translate(Vector2.up * 2.0f);
     }
 
     /// <summary>

@@ -65,7 +65,7 @@ public class BaseInteractable : MonoBehaviour
 
     protected virtual void Update()
     {
-        //Debug.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer.Progress}");
+        //Logger.Log($"Activation progress: {activationTimer.Progress}, Deactivation progress: {deactivationTimer.Progress}");
     }
 
     public void AddToTotalTriggers()
@@ -130,7 +130,7 @@ public class BaseInteractable : MonoBehaviour
     }
 
     /// <summary>
-    /// Controls 
+    /// Controls
     /// </summary>
     /// <returns></returns>
     virtual protected IEnumerator ManageTriggering()
@@ -226,7 +226,7 @@ public class BaseInteractable : MonoBehaviour
     /// </summary>
     virtual protected void DoInteractionAction()
     {
-        Debug.LogWarning("You should be using an overriden method.");
+        Logger.LogWarning("You should be using an overriden method.");
     }
 
     /// <summary>

@@ -44,7 +44,7 @@ public class InfectionTracker : MonoBehaviour
     {
 
         Vector3 distanceToCentre = trigger.transform.position - transform.position;
-        //Debug.Log("Distance to centre = " + distanceToCentre);
+        //Logger.Log("Distance to centre = " + distanceToCentre);
 
         //get the edge of the player collider to the centre of the trigger collider
         //float actualDistanceToCentre = Mathf.Abs(distanceToCentre.x) - (playerCollider.bounds.size.x / 2);
@@ -53,8 +53,8 @@ public class InfectionTracker : MonoBehaviour
         float lateralDepth = (trigger.bounds.size.x / 2) - (Mathf.Abs(distanceToCentre.x) - playerCollider.bounds.size.x);
         float verticallDepth = (trigger.bounds.size.y / 2) - (Mathf.Abs(distanceToCentre.y) - playerCollider.bounds.size.y);
 
-        //Debug.Log("Depth x in trigger = " + lateralDepth);
-        //Debug.Log("Depth y in trigger = " + verticallDepth);
+        //Logger.Log("Depth x in trigger = " + lateralDepth);
+        //Logger.Log("Depth y in trigger = " + verticallDepth);
 
         if (lateralDepth < 0 && verticallDepth < 0)
         {

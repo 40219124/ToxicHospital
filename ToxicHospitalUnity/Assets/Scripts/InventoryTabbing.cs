@@ -43,6 +43,7 @@ public class InventoryTabbing : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+<<<<<<< HEAD
         Debug.Log("OnSelect");
 
         ShowTab();
@@ -66,6 +67,9 @@ public class InventoryTabbing : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
         Debug.Log("OnDeselect");
         //graphic.color = unselectedColour;
+=======
+        Logger.Log("OnSelect");
+>>>>>>> Dev
         ShowTab();
     }
 
