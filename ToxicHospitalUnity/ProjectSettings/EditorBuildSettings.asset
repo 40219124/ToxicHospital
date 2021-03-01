@@ -4,5 +4,32 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boot.unity
+    guid: f34e380daa00f50499f745d1476e71af
+  - enabled: 1
+    path: Assets/Resources/Scenes/StartScreen.unity
+    guid: 7b68f3f858e29f44780caee70cf0fe4e
+  - enabled: 1
+    path: Assets/Resources/Scenes/InGame.unity
+    guid: 061c58c0c546b764cb0e968ab7d08e5e
+  - enabled: 1
+    path: Assets/Resources/Scenes/Overlay.unity
+    guid: e881524af9921fe43ab7c4dc2d94ea4c
+  - enabled: 1
+    path: Assets/Resources/Scenes/PauseScreen.unity
+    guid: b2185e99846076c4a83f4bf8a80f19c8
+  - enabled: 1
+    path: Assets/Resources/Scenes/InventoryScene.unity
+    guid: f7dbc5faff1e69f488e07f8386d807d7
+  - enabled: 0
+    path: Assets/Resources/Scenes/Daniel - Test 2.unity
+    guid: 9905f883460a9c041a13d2dfbd08c749
+  - enabled: 0
+    path: Assets/Resources/Scenes/Tim - Test.unity
+    guid: b273a7a0b99877646888f62af9d7f035
+  - enabled: 0
+    path: Assets/Resources/Scenes/Daniel - Test.unity
+    guid: e1d8c15f43bcfe14086be5a2d981637c
   m_configObjects: {}

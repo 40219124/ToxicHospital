@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick07
+  m_EditorClassIdentifier: 
+  objectName: Report 007
+  objectSprite: {fileID: 21300000, guid: 4769f0006b2d56b44a71eda00ec6328c, type: 3}
+  classification: 2
+  objectText: "HARPO \r\nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n07 February 2021.\r\nSubject: Serum [REDACTED]\r\nA New Variable\r\n\r\n2210:\r\nProgress
+    with the new serum has produced some interesting results. The first [REDACTED]
+    within the serem was [REDACTED] and highly unstable. But after sleepless nights
+    since the discontinuation of C.R. Ive managed to isolate the key protein within
+    [REDACTED]\r\n\r\n2240:\r\nA new [REDACTED] variable has been introduced into
+    the serum. The surface protiens and [REDACTED] are rapidly [REDACTED] I\u2019ve
+    never seen such rapid [REDACTED] like this. This needs further stabilization
+    if its to be deployed in the \u201Csafest\u201D of controlled environments.\r\n\r\n2330:\r\nThe
+    [REDACTED] nature displayed within the serum has been reduced exponentially to
+    satisfactory levels. I must test new serum, I\u2019m calling it [REDACTED] on
+    a new subject and observe its interactions when it\u2019s isolated.\r\n\r\n08
+    Feb 2021, 0200;\r\n\"Subject A\" between the hours of 0000 and 0100, displayed
+    a subdued or lethargic disposition, if you will. Upon reintroduction of other
+    subjects \u201CGroup A\u201D void of [REDACTED], behavior remained the unchanged
+    for \u201CSubject A\u201D. Facinatingly \u201CGroup A\u201D, void of the new
+    variant, displayed hostile behavior towards the subject. And then some unexpected.
+    \u201CSubject A\u201D [REDACTED] ...slightly!.\r\n\r\nC.M Stashwick\r\nHead of
+    Applied Research\r\n\r\nReport 007"

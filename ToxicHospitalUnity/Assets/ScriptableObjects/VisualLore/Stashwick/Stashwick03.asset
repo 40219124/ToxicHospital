@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick03
+  m_EditorClassIdentifier: 
+  objectName: Report 003
+  objectSprite: {fileID: 21300000, guid: bfd753a756ba1e44a8b806146ed4a8a6, type: 3}
+  classification: 2
+  objectText: "HARPO \r\nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n21 January 2021.\r\nSubject: Cerebral Restoration Case Study
+    #5\r\n        [REDACTED]/Patient 007\r\n\r\n0800:\r\nPatient 007 is now responding
+    to test 5 of 6. Since introducing a low dosage of [REDACTED] in conjunction with
+    [REDACTED] we have seen substantial progress in cellular restoration of the cerebral
+    tissue. As I noted in \u201CAudio File #15\u201D in relation to Cerebral Restoration
+    \u201CCase Study #7\u201D, 007\u2019s motor functions are no longer sporadic.
+    He responds to [REDACTED] stimulation, but motor functions are not permanent.
+    Patient can move eyes and blink for a maximum of just [REDACTED]. Curiously,
+    patient exhibits no discernable aptitude of motion for other limbs of the body.
+    I theorize [REDACTED] expend their [REDACTED] as they jump start the cellular
+    restortaion of the central tissues within the cortex.\r\n\r\nFurther test and
+    analysis is required, but findings are incredibly encouraging.\r\n\r\nThe team
+    is inching ever closer to our breakthrough I can feel it.\r\n*Please refer to
+    Audio File #15 for supplimentary data*.\r\n\r\nC.M Stashwick\r\nHead of Applied
+    Research\r\n\r\nReport 003"

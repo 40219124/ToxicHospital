@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c46592ae3dd3642aff79158115c781, type: 3}
+  m_Name: Stashwick08
+  m_EditorClassIdentifier: 
+  objectName: Report 008
+  objectSprite: {fileID: 21300000, guid: 6641013069e806a43ad365a5318eb4ef, type: 3}
+  classification: 2
+  objectText: "HARPO \r\nTECHNOLOGIES\r\n\r\nDr.Charles M Stashwick\r\nApplied Research
+    Manifesto\r\n\r\n13 February 2021.\r\nSubject: Resignation\r\nFarewell\r\n\r\n0300:\r\nAll
+    my data and research are backed up. I spent the last few days prepping for this
+    moment but it still feels surreal. Peter sent out a departmental email, updating
+    Applied Research of the changes coming into effect, with the Cerebral Regenerative
+    Therapy Research now suspended indefinately. He\u2019s desided to move the department\u2019s
+    focus to military weapon research. Predictable and a slap to the face! The bloody
+    bastard! But I digress.\r\n\r\n*Please refer to President Peter Darson\u2019s
+    Departmental email \r\n\u201CTaking Applied Research Forward\u201D for supplimentary
+    data*\r\n\r\nI spoke with Peter a few hours ago. I tendered my resignation to
+    him. He exclaimed that I \u201Cshould reconsider\u201D since he wasn\u2019t firing
+    me, that he \u201Cconsidered me a friend\u201D. How so thoughful?. But, there
+    is no \u201Creversing\u201D what has been set into motion. I told him \u201Cthank
+    you but I can not be here any longer, my work here is, finished.\u201D I... ...
+    ... I left him a... \u201Cparting gift\u201D. A \u201Ctoken\u201D of our \u201Cfriendship\u201D,
+    if you will, and wished him good luck.\r\n\r\n*Please refer to Audio File #24
+    for supplimentary data regarding \u201CConversation with the President\u201D*\r\n\r\nI
+    was hoping Carla and Harrington would be around when I left. A shame really because
+    they both deserve better than HARPO, this brilliant department deserves better
+    than HARPO and PETER. But Alas, whats done, what I\u2019ve done... is done! I\u2019ve
+    washed my hands clean of this place, I will continue my research on my own and
+    change the world. I\u2019ll restore control to the body of those who have lost
+    it.\r\n\r\nCarla! Harrington! It was a pleasure!\r\n\r\n*Refer to \u201CResignation
+    of Charles Marrion Stashwisk\u201D for Supplimentary data*\r\n\r\nC.M Stashwick\r\nFormer
+    Head of Applied Research\r\n\r\nReport 008"
