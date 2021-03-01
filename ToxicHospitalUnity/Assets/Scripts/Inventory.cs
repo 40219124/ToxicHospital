@@ -32,7 +32,7 @@ public class Inventory
 
     public void AddItem(LoreItem item)
     {
-        Logger.LogWarning("Remove this testing code when finished.");
+
         int index = -1;
 
         if (item.classification == LoreType.AudioLog)
