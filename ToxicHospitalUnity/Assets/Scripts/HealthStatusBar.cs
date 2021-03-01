@@ -19,7 +19,7 @@ public class HealthStatusBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fill = GetComponentsInChildren<Image>()[1];
+        fill = GetComponentsInChildren<Image>()[0];
 
         //set fill to max on start for health or min for infection
         fill.fillAmount = (int)stat;
